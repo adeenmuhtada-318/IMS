@@ -1,0 +1,35 @@
+# IMS .gitignore
+
+# Database configuration and logs
+includes/db_config.php
+includes/db_connect.php
+error_log.txt
+*.log
+
+# Diagnostic and Seeding Scripts
+db_diagnostic.php
+seed_data.php
+final_seeder.php
+raw_test.php
+final_check.php
+raw_guard_test.php
+debug_sql.php
+force_rebuild.php
+force_rebuild_safe.php
+final_db_fix.php
+final_rebuild.php
+simple_rebuild.php
+robust_rebuild.php
+verbose_rebuild.php
+raw_final_test.php
+clean_slate.php
+stress_test.php
+
+# OS files
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# IDEs
+.vscode/
+.idea/

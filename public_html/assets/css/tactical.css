@@ -1,0 +1,176 @@
+/* 
+   TACTICAL CYBER-DARK UI 
+   Aesthetics: High-contrast, lightweight, futuristic.
+*/
+
+:root {
+    --bg-deep: #020406;
+    --accent-cyan: #00fbff;
+    --alert-orange: #ff7b00;
+    --text-dim: #a0a0a0;
+    --border-glow: rgba(0, 251, 255, 0.2);
+}
+
+body {
+    background-color: var(--bg-deep);
+    color: #ffffff;
+    font-family: 'Segoe UI', 'Roboto', monospace;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    border-right: 1px solid var(--accent-cyan);
+    position: fixed;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+}
+
+.sidebar h2 {
+    color: var(--accent-cyan);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 1.2rem;
+    border-bottom: 2px solid var(--accent-cyan);
+    padding-bottom: 10px;
+}
+
+/* Dashboard Grid */
+.main-content {
+    margin-left: 280px;
+    padding: 30px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+}
+
+.stat-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-glow);
+    padding: 20px;
+    text-align: center;
+    transition: 0.3s;
+}
+
+.stat-card:hover {
+    border-color: var(--accent-cyan);
+    box-shadow: 0 0 15px var(--border-glow);
+}
+
+.stat-card h3 {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.stat-card .value {
+    color: var(--accent-cyan);
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.stat-card.alert .value {
+    color: var(--alert-orange);
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+}
+
+th {
+    text-align: left;
+    color: var(--accent-cyan);
+    border-bottom: 1px solid var(--accent-cyan);
+    padding: 12px;
+}
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Buttons */
+.btn-tactical {
+    background: transparent;
+    border: 1px solid var(--accent-cyan);
+    color: var(--accent-cyan);
+    padding: 8px 15px;
+    cursor: pointer;
+    text-transform: uppercase;
+    transition: 0.3s;
+}
+
+.btn-tactical:hover {
+    background: var(--accent-cyan);
+    color: var(--bg-deep);
+}
+
+/* Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    background-color: var(--bg-deep);
+    margin: 10% auto;
+    padding: 30px;
+    border: 1px solid var(--accent-cyan);
+    width: 400px;
+    box-shadow: 0 0 30px rgba(0, 251, 255, 0.1);
+}
+
+.close-btn {
+    color: var(--text-dim);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: var(--accent-cyan);
+}
+
+/* Form Styling */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+    letter-spacing: 1px;
+}
+
+.form-group input, .form-group select {
+    width: 100%;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-glow);
+    color: #fff;
+    box-sizing: border-box;
+}
+
+.form-group input:focus, .form-group select:focus {
+    outline: none;
+    border-color: var(--accent-cyan);
+}
