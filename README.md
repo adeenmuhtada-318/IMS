@@ -1,45 +1,53 @@
-# SECURE_IMS - Tactical Inventory Management System
+# SecurityFirm_Inventory - IMS Phase-V (Tactical Command)
 
-A futuristic, high-contrast Inventory Management System designed for security firms. This application allows operators to track assets, monitor critical stock levels, and decommission items in a "cyber-dark" tactical environment.
+## 🛡️ Project Overview
+A specialized, enterprise-grade **Inventory Management System (IMS)** designed for high-stakes security firm operations. This "Tactical Cyber-Dark" platform features a hardened backend architecture and a high-contrast, low-fatigue operator interface. It is optimized for real-time asset tracking, personnel readiness monitoring, and compliance auditing.
 
-## 🚀 Quick Start for Beginners
+---
 
-### 1. Requirements
-To run this application, you need a local web server that supports **PHP** and **MySQL**.
-- **Windows:** Download and install [XAMPP](https://www.apachefriends.org/index.html).
-- **Mac:** Download and install [MAMP](https://www.mamp.info/).
+## 🚀 Key Technical Features
+- **Hardened Data Bridge:** Isolated `config.php` with native PDO query processing (`EMULATE_PREPARES => false`).
+- **Atomic Transactional Deployments:** Asset checkouts are processed as indivisible units to ensure zero data inconsistency.
+- **Security Logic Engine:** Multi-layer authentication featuring IP-based Rate Limiting, CSRF protection, and System-wide Audit Logging.
+- **Proactive Compliance Monitor:** Live "Critical Expiration Ticker" tracking weapon licenses and gear validity.
+- **Transactional Personnel Roster:** Real-time duty status management with one-click toggles and RBAC data masking.
 
-### 2. Setup Instructions
-1. **Move Project Files:**
-   - Copy the entire `IMS` folder into your server's root directory:
-     - For XAMPP: `C:\xampp\htdocs\IMS`
-     - For MAMP: `/Applications/MAMP/htdocs/IMS`
+---
 
-2. **Start the Server:**
-   - Open the **XAMPP Control Panel** and click **Start** next to "Apache" and "MySQL".
+## 🛠️ System Architecture (Consolidated)
+```text
+IMS/
+├── config.php                 # Core System Parameters
+├── index.php                  # Root Redirect
+├── login.php                  # Authorization Gateway
+├── dashboard.php              # Command KPI Center
+├── api/                       # Async Request Handlers
+├── assets/                    # Tactical CSS/JS & Theme Controllers
+├── auth/                      # Authentication Engine
+├── database/                  # SQL Schema (v5.1)
+├── includes/                  # Core Dependencies & PDO Bridge
+├── inventory/                 # Asset Management Modules
+├── operations/                # Attendance & Field Logs
+├── payroll/                   # Financial Processing
+└── personnel/                 # Force Management Modules
+```
 
-3. **Setup the Database:**
-   - Open your browser and go to `http://localhost/phpmyadmin`.
-   - Click **New** on the left sidebar and create a database named `security_ims_db`.
-   - Click on your new database, go to the **Import** tab.
-   - Click **Choose File** and select the file located at `E:\IMS\database\schema.sql`.
-   - Scroll down and click **Import**.
+---
 
-4. **Access the App:**
-   - Open your browser and visit: `http://localhost/IMS/public/index.php`
+## 📦 Local Deployment & Setup
+1. **Environment:** Ensure XAMPP/WAMP is running (PHP 8.x + MariaDB/MySQL).
+2. **Database:** Create a database named `SecurityFirm_Inventory`.
+3. **Schema:** Import `database/schema.sql`.
+4. **Configuration:** Verify credentials in `config.php`.
+5. **Access:** Navigate to `http://localhost/IMS/` in your browser.
 
-## 🛠 Features
-- **Command Dashboard:** Live view of total assets and critical alerts.
-- **Asset Logging:** Add new gear with serial numbers and custom thresholds.
-- **Decommissioning:** Safely remove assets from active duty (soft-delete).
-- **Tactical UI:** Designed for low eye strain and high readability.
+---
 
-## 📂 Project Structure
-- `/public`: Contains the main entry point (`index.php`).
-- `/api`: The PHP engine handling data requests.
-- `/assets`: CSS and JavaScript for the "Tactical" look and feel.
-- `/database`: Contains the SQL schema for setup.
-- `/includes`: Database connection configuration.
+## 🔑 Authorized Access (Default)
+| Role | Operator ID | Passkey |
+| :--- | :--- | :--- |
+| **System Admin** | `ADMIN_SECURE` | `TACTICAL_2026` |
+| **Operations Director** | `director_operation@fast` | `mian_habibullah` |
 
-## 📝 License
-Created for educational and security firm simulation purposes.
+---
+*Developed for Security Firm Simulation & Educational Purposes.*

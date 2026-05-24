@@ -9,26 +9,37 @@ A futuristic, lightweight Inventory Management System (IMS) designed for securit
 - **Database:** MySQL (3rd Normal Form schema).
 
 ## Architecture
-- `public/index.php`: Main entry point and dashboard UI.
-- `assets/css/tactical.css`: Global styles including theme variables and modal designs.
-- `assets/js/app.js`: Core frontend logic, AJAX handling, and DOM manipulation.
-- `api/inventory_engine.php`: Unified backend router for all CRUD operations.
-- `includes/db_connect.php`: Secure PDO connection layer.
-- `database/schema.sql`: Database structure including Categories, Suppliers, Inventory, and Transactions.
+- `index.php`: Root entry point (redirects to login).
+- `login.php`: Secure operator authorization gateway.
+- `dashboard.php`: Main operational command center.
+- `api/api_router.php`: Unified backend router for async operations.
+- `includes/connection.php`: Secure PDO database bridge.
+- `database/schema.sql`: Master database schema (v5.1).
 
 ## Key Features
-- **Live Dashboard:** Real-time stats for total assets, critical stock levels, and categories.
-- **Asset Logging:** Secure modal-based interface for adding new assets with serial numbers and critical thresholds.
-- **Soft Deletion:** "Decommissioning" assets preserves historical data for audit requirements.
-- **Tactical UI:** Focused on high readability and low visual fatigue for operators.
+- **Live Dashboard:** Real-time stats for weapons, patrols, and personnel.
+- **Personnel Roster:** Advanced guard management with duty status toggles.
+- **Armory Control:** Serialized tracking for weapons and bulk inventory.
+- **Payroll Engine:** Automated salary generation based on operational logs.
+- **User Management (New):** Dedicated admin panel for operator account creation and role management.
+- **Refined UI:** Transitioning from "Tactical Cyber-Dark" to a more user-friendly "Modern Navy" theme with softer colors and improved accessibility.
 
 ## Development Notes
-- The system uses **Soft Deletion** (`is_deleted = 1`) to ensure transaction history integrity.
-- Critical stock items are automatically highlighted in the UI (Orange/Cyan contrast).
-- All database queries use **Prepared Statements** to prevent SQL Injection.
+- **Hardened Configuration:** `config.php` is isolated in the root directory.
+- **Native Prepared Statements:** `PDO::ATTR_EMULATE_PREPARES => false` enforced for security.
+- **Soft Deletion:** `is_deleted = 1` used to preserve audit trails.
+- **API Routing:** Unified `api/api_router.php` handles async requests with role-based access control (RBAC).
+
+## Recent Changes (May 2026)
+- **Auth Overhaul:** Fixed role mismatch in Admin management (accepting 'Admin' and 'Admin/CEO').
+- **API Enhancements:** Added `get_users` and `create_user` actions to `api_router.php`.
+- **UI Cleanup:** 
+    - Removed default text decoration (underlines) from buttons and links.
+    - Softened color scheme (from deep black/cyan to navy/sky blue).
+    - Simplified terminology (e.g., "OPERATOR_ACCOUNTS" -> "System Operators").
+- **Admin Panel:** Implemented "Add New User" functionality with modal interface.
 
 ## Future Roadmap
 - [ ] Implement Asset Movement Logs (Transactions).
 - [ ] Add Supplier Management interface.
-- [ ] Integrate User Authentication/Operator Login.
 - [ ] Export inventory reports to PDF/CSV.
