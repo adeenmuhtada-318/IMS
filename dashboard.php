@@ -66,25 +66,26 @@ if (!isset($_SESSION['user_logged_in']) || $_SESSION['user_logged_in'] !== true)
                 <p style="color: var(--TextSecondary); font-size: 1.1rem;">Welcome to the Fast Security tactical command center.</p>
             </div>
 
+            <!-- DASHBOARD WIDGET COMPONENT REPAIR -->
             <section class="HudMetricsRow">
-                <div class="MetricCard">
-                    <span class="MetricTitle">Active Guards</span>
-                    <span class="MetricValue">--</span>
+                <div class="DashboardWidgetCard">
+                    <span class="TelemetryCounterLabel">Active Guards</span>
+                    <span class="TelemetryCounterValue">--</span>
                 </div>
-                <div class="MetricCard">
-                    <span class="MetricTitle">Active Sites</span>
-                    <span class="MetricValue">--</span>
+                <div class="DashboardWidgetCard">
+                    <span class="TelemetryCounterLabel">Active Sites</span>
+                    <span class="TelemetryCounterValue">--</span>
                 </div>
-                <div class="MetricCard">
-                    <span class="MetricTitle">Open Alerts</span>
-                    <span class="MetricValue">--</span>
+                <div class="DashboardWidgetCard">
+                    <span class="TelemetryCounterLabel">Open Alerts</span>
+                    <span class="TelemetryCounterValue">--</span>
                 </div>
             </section>
         </main>
     </div>
 
     <script>
-        // SIDEBAR TOGGLE MECHANISM
+        // SIDEBAR TOGGLE ENGINE
         const toggleBtn = document.getElementById('SidebarToggleAction');
         const mainWrapper = document.getElementById('MainLayoutWrapper');
 

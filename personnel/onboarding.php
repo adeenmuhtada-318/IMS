@@ -61,28 +61,28 @@ if (!isset($_SESSION['user_logged_in']) || $_SESSION['user_logged_in'] !== true)
                 <span>Switch Theme</span>
             </div>
 
-            <!-- TELEMETRY COUNTERS ROW -->
+            <!-- DASHBOARD WIDGET COMPONENT REPAIR -->
             <section class="HudMetricsRow">
-                <div class="MetricCard" id="FieldForceCard">
-                    <span class="MetricTitle">Field Force: --</span>
-                    <span class="MetricValue">0</span>
+                <div class="TelemetryCounterBox" id="FieldForceCard">
+                    <span class="TelemetryCounterLabel">Field Force</span>
+                    <span class="TelemetryCounterValue" id="MetricFieldForce">0</span>
                 </div>
-                <div class="MetricCard" id="SupplyRiskCard">
-                    <span class="MetricTitle">Supply Risk: --</span>
-                    <span class="MetricValue">0</span>
+                <div class="TelemetryCounterBox" id="SupplyRiskCard">
+                    <span class="TelemetryCounterLabel">Supply Risk</span>
+                    <span class="TelemetryCounterValue" id="MetricSupplyRisk">0</span>
                 </div>
-                <div class="MetricCard" id="BlacklistCard">
-                    <span class="MetricTitle">Blacklist: --</span>
-                    <span class="MetricValue">0</span>
+                <div class="TelemetryCounterBox" id="BlacklistCard">
+                    <span class="TelemetryCounterLabel">Blacklist</span>
+                    <span class="TelemetryCounterValue" id="MetricBlacklist">0</span>
                 </div>
             </section>
 
             <div class="PortalIdentityBlock" style="margin-bottom: 40px;">
-                <h1 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 12px;">Human Resource Portal</h1>
-                <p style="color: var(--TextSecondary); font-size: 1.1rem;">Personnel onboarding, roster auditing, and performance compliance control center.</p>
+                <h1 class="HubTitleHeading">Human Resource Portal</h1>
+                <p class="HubSubText">Personnel onboarding, roster auditing, and performance compliance control center.</p>
             </div>
 
-            <!-- STAGE 3: SYMMETRICAL CORE GRID MATRIX -->
+            <!-- HUB GRID MATRIX -->
             <div class="HubControlMatrixGrid" id="HubControlMatrixGrid">
                 
                 <a href="registrationForm.php" class="GatewayOptionCard" id="PanelGuardRegistration">
@@ -136,6 +136,20 @@ if (!isset($_SESSION['user_logged_in']) || $_SESSION['user_logged_in'] !== true)
                 body.classList.add('DarkMode');
             }
         });
+
+        // LIVE METRIC SYNC ENGINE
+        function updateHUD() {
+            fetch('../api/api_router.php?action=dashboard_stats')
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById('MetricFieldForce').innerText = data.field_force || '0';
+                    document.getElementById('MetricSupplyRisk').innerText = data.supply_risk || '0';
+                    document.getElementById('MetricBlacklist').innerText = data.blacklist || '0';
+                })
+                .catch(err => console.error('HUD_SYNC_ERROR:', err));
+        }
+        setInterval(updateHUD, 30000);
+        document.addEventListener('DOMContentLoaded', updateHUD);
     </script>
 </body>
 </html>
