@@ -1,0 +1,366 @@
+:root {
+    /* STRICT PASCALCASE DESIGN TOKENS - NO HYPHENS OR UNDERSCORES */
+    --BackgroundColor: #0B0F19;
+    --CardBackground: #161F30;
+    --AccentCyan: #00F0FF;
+    --AlertOrange: #FF6B00;
+    --TextPrimary: #FFFFFF;
+    --TextSecondary: #94A3B8;
+    --SidebarBackground: #111827;
+    --BorderColor: rgba(255, 255, 255, 0.1);
+    --TransitionStandard: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.LightMode {
+    --BackgroundColor: #F9FAFB;
+    --CardBackground: #FFFFFF;
+    --AccentCyan: #00A3C4;
+    --AlertOrange: #E65100;
+    --TextPrimary: #1F2937;
+    --TextSecondary: #64748B;
+    --SidebarBackground: #FFFFFF;
+    --BorderColor: rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+}
+
+/* STAGE 4: GLOBAL RESET */
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+body {
+    background-color: var(--BackgroundColor);
+    color: var(--TextPrimary);
+    overflow: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* MASTER GRID ENGINE */
+#MainLayoutWrapper {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    transition: grid-template-columns var(--TransitionStandard);
+}
+
+#MainLayoutWrapper.SidebarCollapsed {
+    grid-template-columns: 70px 1fr;
+}
+
+/* SIDEBAR LAYOUT */
+#LeftSidebarPanel {
+    background-color: var(--SidebarBackground);
+    border-right: 1px solid var(--BorderColor);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: relative;
+    z-index: 1000;
+}
+
+.SidebarBrandingArea {
+    padding: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: 80px;
+}
+
+.LogoText {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: var(--AccentCyan);
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+#SidebarToggleAction {
+    background: transparent;
+    border: none;
+    color: var(--TextSecondary);
+    cursor: pointer;
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+}
+
+#SidebarToggleAction:hover {
+    color: var(--AccentCyan);
+}
+
+.NavigationLinkList {
+    list-style: none;
+    flex-grow: 1;
+    padding-top: 12px;
+}
+
+.NavigationItem {
+    padding: 4px 12px;
+}
+
+.NavigationAnchor {
+    display: flex;
+    align-items: center;
+    padding: 12px 14px;
+    border-radius: 12px;
+    color: var(--TextSecondary);
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.NavigationAnchor:hover {
+    background: rgba(0, 240, 255, 0.05);
+    color: var(--TextPrimary);
+}
+
+.ActiveMenuItem {
+    background: rgba(0, 240, 255, 0.1);
+    color: var(--AccentCyan);
+    font-weight: 600;
+}
+
+.MenuIconNode {
+    width: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.MenuTextLabel {
+    margin-left: 16px;
+    font-size: 0.95rem;
+}
+
+/* COLLAPSED STATE LOGIC */
+.SidebarCollapsed .LogoText,
+.SidebarCollapsed .MenuTextLabel,
+.SidebarCollapsed .OperatorAccountHeader {
+    display: none;
+}
+
+.SidebarCollapsed .SidebarBrandingArea {
+    justify-content: center;
+    padding: 24px 0;
+}
+
+.SidebarCollapsed .NavigationItem {
+    padding: 4px 0;
+    display: flex;
+    justify-content: center;
+}
+
+.SidebarCollapsed .NavigationAnchor {
+    padding: 12px;
+    justify-content: center;
+}
+
+/* ACCOUNT SUMMARY BLOCK */
+.UserStatusComponent {
+    padding: 24px;
+    border-top: 1px solid var(--BorderColor);
+    margin-top: auto;
+}
+
+.OperatorAccountHeader {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--TextSecondary);
+    text-transform: uppercase;
+    margin-bottom: 4px;
+}
+
+.SystemActiveFlag {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--AccentCyan);
+    letter-spacing: 1px;
+}
+
+.SidebarCollapsed .UserStatusComponent {
+    display: flex;
+    justify-content: center;
+    padding: 24px 0;
+}
+
+/* INDEPENDENT CONTENT VIEWPORT */
+#RightSideViewport {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-width: 0;
+    height: 100vh;
+    padding: 24px 40px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background-color: var(--BackgroundColor);
+}
+
+/* TELEMETRY HEADERS */
+.HudMetricsRow {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.MetricCard {
+    background: var(--CardBackground);
+    border: 1px solid var(--BorderColor);
+    padding: 24px;
+    border-radius: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.MetricTitle {
+    font-size: 0.85rem;
+    color: var(--TextSecondary);
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.MetricValue {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--AccentCyan);
+}
+
+/* HUB GRID MATRIX */
+.HubControlMatrixGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    width: 100%;
+    margin-top: 32px;
+    padding-bottom: 40px;
+}
+
+.GatewayOptionCard {
+    background: var(--CardBackground);
+    border: 1px solid var(--BorderColor);
+    padding: 32px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
+}
+
+.GatewayOptionCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+    border-color: var(--AccentCyan);
+}
+
+.CardTitleNode {
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.CardSummaryText {
+    font-size: 0.95rem;
+    color: var(--TextSecondary);
+    line-height: 1.6;
+}
+
+/* MODERN FORM CONTROLS styling */
+.FormClusterCard {
+    background: var(--CardBackground);
+    border: 1px solid var(--BorderColor);
+    padding: 32px;
+    border-radius: 20px;
+    margin-bottom: 32px;
+}
+
+.SectionTitle {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--AccentCyan);
+    margin-bottom: 24px;
+}
+
+.FormGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 24px;
+}
+
+.InputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.InputLabel {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--TextSecondary);
+}
+
+.ModernInput {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--BorderColor);
+    border-radius: 10px;
+    padding: 12px 16px;
+    color: var(--TextPrimary);
+    font-size: 0.95rem;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.ModernInput:focus {
+    outline: none;
+    border-color: var(--AccentCyan);
+    box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.1);
+}
+
+.LightMode .ModernInput {
+    background: #FFFFFF;
+    color: #1F2937;
+    border-color: #D1D5DB;
+}
+
+.PrimaryActionButton {
+    background: var(--AccentCyan);
+    color: #000000;
+    border: none;
+    border-radius: 12px;
+    padding: 16px 32px;
+    font-size: 1rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.PrimaryActionButton:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 24px rgba(0, 240, 255, 0.3);
+}
+
+/* THEME TOGGLE */
+.ThemeModeToggle {
+    cursor: pointer;
+    background: var(--CardBackground);
+    border: 1px solid var(--BorderColor);
+    padding: 10px 20px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 32px;
+    align-self: flex-end;
+}

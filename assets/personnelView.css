@@ -1,0 +1,323 @@
+:root {
+    /* DARK MODE TOKENS */
+    --BackgroundColor: #0B0F19;
+    --CardBackground: #161F30;
+    --AccentCyan: #00F0FF;
+    --AlertOrange: #FF6B00;
+    --TextPrimary: #FFFFFF;
+    --TextSecondary: #94A3B8;
+    --SidebarBackground: #111827;
+    --BorderColor: rgba(255, 255, 255, 0.05);
+    --InputBackground: #0F172A;
+}
+
+body.LightMode {
+    --BackgroundColor: #F9FAFB;
+    --CardBackground: #FFFFFF;
+    --AccentCyan: #00A3C4;
+    --AlertOrange: #E65100;
+    --TextPrimary: #111827;
+    --TextSecondary: #64748B;
+    --SidebarBackground: #FFFFFF;
+    --BorderColor: rgba(0, 0, 0, 0.1);
+    --InputBackground: #F1F5F9;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+body {
+    background-color: var(--BackgroundColor);
+    color: var(--TextPrimary);
+    overflow-x: hidden;
+}
+
+.MainLayoutWrapper {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    min-height: 100vh;
+}
+
+/* SIDEBAR & NAVIGATION */
+.SidebarNavigationBlock {
+    background-color: var(--SidebarBackground);
+    border-right: 1px solid var(--BorderColor);
+    display: flex;
+    flex-direction: column;
+    padding: 32px 0;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+}
+
+.CompanyLogoContainer {
+    padding: 0 32px;
+    margin-bottom: 48px;
+}
+
+.LogoText {
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: var(--AccentCyan);
+}
+
+.NavigationLinkList {
+    list-style: none;
+    flex-grow: 1;
+}
+
+.NavigationAnchor {
+    display: flex;
+    align-items: center;
+    padding: 12px 32px;
+    color: var(--TextSecondary);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    border-left: 3px solid transparent;
+}
+
+.NavigationAnchor:hover, .NavigationAnchor.Active {
+    color: var(--AccentCyan);
+    background: linear-gradient(90deg, rgba(0, 240, 255, 0.05) 0%, transparent 100%);
+    border-left-color: var(--AccentCyan);
+}
+
+/* MAIN CONTENT AREA */
+.MainWorkspaceViewport {
+    padding: 32px 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.TopActionBar {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.ThemeModeToggle {
+    background: var(--CardBackground);
+    border: 1px solid var(--BorderColor);
+    padding: 8px 16px;
+    border-radius: 8px;
+    color: var(--TextPrimary);
+    cursor: pointer;
+    font-weight: 600;
+}
+
+/* SPLIT LAYOUT ENGINE */
+.SplitLayoutEngine {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
+/* LEFT MODULE: ROSTER & ATTENDANCE */
+.LeftWorkspaceModule {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.SearchFilterRow {
+    display: flex;
+    gap: 16px;
+    background: var(--CardBackground);
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid var(--BorderColor);
+}
+
+.RosterSearchInput {
+    flex-grow: 1;
+    background: var(--InputBackground);
+    border: 1px solid var(--BorderColor);
+    padding: 12px 16px;
+    border-radius: 6px;
+    color: var(--TextPrimary);
+    outline: none;
+}
+
+.RosterSearchInput:focus {
+    border-color: var(--AccentCyan);
+}
+
+.FilterSubmitButton {
+    background: var(--AccentCyan);
+    color: #000;
+    border: none;
+    padding: 0 24px;
+    border-radius: 6px;
+    font-weight: 700;
+    cursor: pointer;
+}
+
+.RosterDataTable {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--CardBackground);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--BorderColor);
+}
+
+.RosterDataTable th {
+    text-align: left;
+    padding: 16px;
+    background: rgba(255, 255, 255, 0.02);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--TextSecondary);
+    border-bottom: 1px solid var(--BorderColor);
+}
+
+.RosterDataTable td {
+    padding: 16px;
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--BorderColor);
+}
+
+.StatusBadge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
+
+.StatusActive { background: rgba(0, 240, 255, 0.1); color: var(--AccentCyan); }
+.StatusAbsent { background: rgba(255, 107, 0, 0.1); color: var(--AlertOrange); }
+
+/* RIGHT MODULE: ENROLLMENT & COMPLIANCE */
+.RightWorkspaceModule {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.GuardEnrollmentCard, .TacticalComplianceCard {
+    background: var(--CardBackground);
+    padding: 28px;
+    border-radius: 16px;
+    border: 1px solid var(--BorderColor);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.CardHeading {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: var(--AccentCyan);
+}
+
+.EnrollmentForm {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.FormFieldGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.FieldLabel {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--TextSecondary);
+}
+
+.FormInput {
+    background: var(--InputBackground);
+    border: 1px solid var(--BorderColor);
+    padding: 12px;
+    border-radius: 6px;
+    color: var(--TextPrimary);
+    outline: none;
+}
+
+.FormInput:focus {
+    border-color: var(--AccentCyan);
+}
+
+.ComplianceList {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.ComplianceItem {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.ComplianceCheckbox {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--BorderColor);
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+    background: var(--InputBackground);
+}
+
+.ComplianceCheckbox:checked {
+    background: var(--AlertOrange);
+    border-color: var(--AlertOrange);
+}
+
+.ComplianceCheckbox:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #000;
+    font-weight: 900;
+    font-size: 0.8rem;
+}
+
+.ComplianceLabel {
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+.EnrollGuardSubmitButton {
+    background: var(--AccentCyan);
+    color: #000;
+    border: none;
+    padding: 16px;
+    border-radius: 8px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    margin-top: 12px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1400px) {
+    .SplitLayoutEngine {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 1024px) {
+    .MainLayoutWrapper {
+        grid-template-columns: 1fr;
+    }
+    .SidebarNavigationBlock {
+        display: none;
+    }
+}

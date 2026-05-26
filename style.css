@@ -1,0 +1,184 @@
+/* Clean CamelCase Variable Design without dashes or underscores */
+:root {
+    /* Theme A: Tactical Cyber Dark Mode */
+    --baseCanvasDark: #0B0F19;
+    --panelContainerDark: rgba(22, 31, 48, 0.8);
+    --voltCyan: #00F0FF;
+    --alertOrange: #FF6B00;
+    --neutralGrey: #6B7280;
+
+    /* Theme B: Corporate Light Mode */
+    --baseCanvasLight: #F9FAFB;
+    --panelContainerLight: #FFFFFF;
+    --voltCyanLight: #00A3C4;
+    --alertOrangeLight: #E65100;
+    --mutedGreyLight: #9CA3AF;
+    
+    /* Active Assignments */
+    --baseCanvas: var(--baseCanvasDark);
+    --panelContainer: var(--panelContainerDark);
+    --accentColor: var(--voltCyan);
+    --warningColor: var(--alertOrange);
+    --textColor: #FFFFFF;
+    --mutedText: var(--neutralGrey);
+    --borderStyle: 1px solid rgba(107, 114, 128, 0.2);
+    --shadowStyle: none;
+    --backdropBlur: blur(10px);
+}
+
+[data-theme="light"] {
+    --baseCanvas: var(--baseCanvasLight);
+    --panelContainer: var(--panelContainerLight);
+    --accentColor: var(--voltCyanLight);
+    --warningColor: var(--alertOrangeLight);
+    --textColor: #111827;
+    --mutedText: var(--mutedGreyLight);
+    --borderStyle: 1px solid rgba(156, 163, 175, 0.1);
+    --shadowStyle: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --backdropBlur: none;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    background-color: var(--baseCanvas);
+    color: var(--textColor);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    min-height: 100vh;
+}
+
+/* 2. COMPONENT LAYOUT ARCHITECTURE */
+
+.topControlBar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 24px;
+    background-color: var(--panelContainer);
+    backdrop-filter: var(--backdropBlur);
+    border-bottom: var(--borderStyle);
+    z-index: 1000;
+}
+
+.brandingText {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: -0.025em;
+    text-transform: uppercase;
+}
+
+.systemStatusContainer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--accentColor);
+}
+
+.statusDot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--accentColor);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--accentColor);
+}
+
+.themeButton {
+    background-color: transparent;
+    border: var(--borderStyle);
+    color: var(--textColor);
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.875rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.themeButton:hover {
+    background-color: var(--accentColor);
+    color: var(--baseCanvasDark);
+    border-color: var(--accentColor);
+}
+
+.coreWorkspace {
+    margin-top: 64px;
+    padding: 24px;
+    max-width: 1440px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* GRID MATRIX */
+
+.telemetryGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.telemetryWidget {
+    background-color: var(--panelContainer);
+    backdrop-filter: var(--backdropBlur);
+    border: var(--borderStyle);
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: var(--shadowStyle);
+}
+
+.widgetLabel {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: var(--mutedText);
+    margin-bottom: 12px;
+    letter-spacing: 0.05em;
+}
+
+.widgetValue {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.modularMatrix {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 24px;
+}
+
+.matrixPanel {
+    background-color: var(--panelContainer);
+    backdrop-filter: var(--backdropBlur);
+    border: var(--borderStyle);
+    border-radius: 8px;
+    padding: 24px;
+    min-height: 200px;
+    box-shadow: var(--shadowStyle);
+}
+
+.panelTitle {
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+/* UTILITIES */
+.voltCyanText { color: var(--accentColor); }
+.alertOrangeText { color: var(--warningColor); }
+.mutedText { color: var(--mutedText); font-size: 0.9375rem; }
+
+@media (max-width: 768px) {
+    .modularMatrix {
+        grid-template-columns: 1fr;
+    }
+}

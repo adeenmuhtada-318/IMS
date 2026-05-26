@@ -231,6 +231,103 @@ body.sidebar-collapsed .brand-text {
     display: none;
 }
 
+
 body.sidebar-collapsed .nav-item {
     justify-content: center;
 }
+
+
+/* 12. HUMAN RESOURCE PORTAL OPTIONS HUB (PASCAL CASE ARCHITECTURE) */
+
+:root {
+    --BaseCanvasDark: #0B0F19;
+    --ModuleCardDark: #161F30;
+    --VoltCyan: #00F0FF;
+    --AlertOrange: #FF6B00;
+    --SleekGrey: #6B7280;
+
+    --BaseCanvasLight: #F9FAFB;
+    --ModuleCardLight: #FFFFFF;
+    --VibrantCyan: #00A3C4;
+    --DeepOrange: #E65100;
+    --SoftGrey: #9CA3AF;
+}
+
+.MainLayoutWrapper {
+    width: 100%;
+    padding: 20px;
+}
+
+.HubControlMatrixGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.HubOptionCard {
+    background-color: var(--ModuleCardDark);
+    border: 1px solid rgba(107, 114, 128, 0.1);
+    border-radius: 12px;
+    padding: 35px;
+    text-decoration: none;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.HubOptionCard:hover {
+    border-color: var(--VoltCyan);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 240, 255, 0.15);
+}
+
+.TitleNode {
+    color: var(--VoltCyan);
+    font-size: 1.3rem;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+
+.DescriptionText {
+    color: var(--SleekGrey);
+    font-size: 0.9rem;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* Theme Integration: Light Mode Overrides */
+body.light-mode .HubOptionCard {
+    background-color: var(--ModuleCardLight);
+    border-color: rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+body.light-mode .TitleNode {
+    color: var(--VibrantCyan);
+}
+
+body.light-mode .DescriptionText {
+    color: var(--SoftGrey);
+}
+
+body.light-mode .HubOptionCard:hover {
+    border-color: var(--VibrantCyan);
+    box-shadow: 0 12px 30px rgba(0, 163, 196, 0.15);
+}
+
+@media (max-width: 1200px) {
+    .HubControlMatrixGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .HubControlMatrixGrid {
+        grid-template-columns: 1fr;
+    }
+}
+
