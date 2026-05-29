@@ -26,7 +26,8 @@ if (!isset($_SESSION['user_logged_in']) || $_SESSION['user_logged_in'] !== true)
         <!-- SIDEBAR NAVIGATION PANEL -->
         <aside id="LeftSidebarPanel">
             <div class="SidebarBrandingArea">
-                <div class="LogoText">Fast Security IMS</div>
+                <img src="assets/images/company_logo.jpeg" class="CompanyLogo" alt="Logo">
+                <div class="BrandingTitle">FAST SECURITY IMS</div>
                 <button id="SidebarToggleAction">
                     <i class="fa-solid fa-bars"></i>
                 </button>
@@ -61,12 +62,12 @@ if (!isset($_SESSION['user_logged_in']) || $_SESSION['user_logged_in'] !== true)
                 <span>Switch Theme</span>
             </div>
 
-            <div class="PortalIdentityBlock" style="margin-bottom: 40px;">
-                <h1 style="font-size: 2.5rem; font-weight: 800; margin-bottom: 12px;">Operational Dashboard</h1>
-                <p style="color: var(--TextSecondary); font-size: 1.1rem;">Welcome to the Fast Security tactical command center.</p>
+            <div class="PortalIdentityBlock">
+                <h1 class="HubTitleHeading">Operational Dashboard</h1>
+                <p class="HubSubText">Welcome to the Fast Security tactical command center.</p>
             </div>
 
-            <!-- DASHBOARD WIDGET COMPONENT REPAIR -->
+            <!-- DASHBOARD WIDGET COMPONENT -->
             <section class="HudMetricsRow">
                 <div class="DashboardWidgetCard">
                     <span class="TelemetryCounterLabel">Active Guards</span>
@@ -101,9 +102,20 @@ if (!isset($_SESSION['user_logged_in']) || $_SESSION['user_logged_in'] !== true)
             if (body.classList.contains('DarkMode')) {
                 body.classList.remove('DarkMode');
                 body.classList.add('LightMode');
+                localStorage.setItem('ThemePreference', 'LightMode');
             } else {
                 body.classList.remove('LightMode');
                 body.classList.add('DarkMode');
+                localStorage.setItem('ThemePreference', 'DarkMode');
+            }
+        });
+
+        // INITIALIZE THEME
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('ThemePreference');
+            if (savedTheme === 'LightMode') {
+                body.classList.remove('DarkMode');
+                body.classList.add('LightMode');
             }
         });
     </script>

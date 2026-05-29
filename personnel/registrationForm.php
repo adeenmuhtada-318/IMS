@@ -26,11 +26,11 @@ require_once '../includes/connection.php';
 
     <div id="MainLayoutWrapper">
         
-        <!-- SIDEBAR NAVIGATION PANEL (2-ITEM HARDCODED) -->
+        <!-- SIDEBAR NAVIGATION PANEL -->
         <aside id="LeftSidebarPanel">
             <div class="SidebarBrandingArea">
-                <div class="LogoText">FAST IMS</div>
-                <button id="SidebarToggleAction" title="Toggle Sidebar">
+                <div class="BrandingTitle">FAST SECURITY IMS</div>
+                <button id="SidebarToggleAction">
                     <i class="fa-solid fa-bars"></i>
                 </button>
             </div>
@@ -56,28 +56,21 @@ require_once '../includes/connection.php';
             </div>
         </aside>
 
-        <!-- MAIN FORM VIEWPORT CONTAINER -->
+        <!-- MAIN WORKSPACE VIEWPORT -->
         <main id="RightSideViewport">
             
-            <header class="TopStatusHeader" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;">
-                <div class="TelemetryNode" style="display: flex; align-items: center; gap: 12px;">
-                    <div class="StatusPulse" style="width: 8px; height: 8px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 10px #22c55e;"></div>
-                    <span class="StatusLabel" style="font-size: 0.8rem; font-weight: 700; color: #22c55e; letter-spacing: 1px;">ENROLLMENT_MODE: ACTIVE</span>
-                </div>
-                
-                <div class="ThemeModeToggle" id="ThemeToggleBtn" style="margin-bottom: 0;">
-                    <i class="fa-solid fa-circle-half-stroke"></i>
-                    <span class="ThemeLabel">Light / Dark Mode</span>
-                </div>
-            </header>
+            <div class="ThemeModeToggle" id="ThemeToggleBtn">
+                <i class="fa-solid fa-circle-half-stroke"></i>
+                <span>Switch Theme</span>
+            </div>
 
-            <div class="PortalIdentityBlock" style="margin-bottom: 40px;">
+            <div class="PortalIdentityBlock">
                 <h1 class="HubTitleHeading">Guard Registration Terminal</h1>
                 <p class="HubSubText">(Bharti Form) System-wide personnel enrollment and verification gateway.</p>
             </div>
 
-            <!-- MAIN DATA ENTRY FORM (FUNCTIONAL LOGIC PRESERVED) -->
-            <form id="bharti-wizard-form" method="POST" action="process_registration.php">
+            <!-- MAIN DATA ENTRY FORM -->
+            <form id="BhartiWizardForm" method="POST" action="process_registration.php">
                 
                 <!-- CLUSTER 1: BASIC IDENTITY & PROFILE -->
                 <div class="FormClusterCard">
@@ -137,12 +130,12 @@ require_once '../includes/connection.php';
                 <div class="FormClusterCard">
                     <h3 class="SectionTitle">Army Record and References</h3>
                     <div style="margin-bottom: 24px; padding: 20px; background: rgba(0, 240, 255, 0.05); border-radius: 12px; border: 1px solid rgba(0, 240, 255, 0.1);">
-                        <label style="display: flex; align-items: center; cursor: pointer; color: var(--AccentCyan); font-weight: 600;">
-                            <input type="checkbox" name="is_ex_army" id="ex-army-toggle" style="margin-right: 15px; width: 20px; height: 20px;"> Was this person in the Army? (Check if Yes)
+                        <label style="display: flex; align-items: center; cursor: pointer; color: var(--VoltCyan); font-weight: 600; gap: 15px;">
+                            <input type="checkbox" name="is_ex_army" id="ExArmyToggle" class="CustomCheckboxNode"> Was this person in the Army? (Check if Yes)
                         </label>
                     </div>
                     
-                    <div id="army-details-node" style="display: none; margin-bottom: 32px;">
+                    <div id="ArmyDetailsNode" style="display: none; margin-bottom: 32px;">
                         <div class="FormGrid">
                             <div class="InputGroup">
                                 <label class="InputLabel">Army Joining Date</label>
@@ -190,7 +183,7 @@ require_once '../includes/connection.php';
                         </div>
                     </div>
                     
-                    <div style="margin-top: 32px; border-top: 1px solid var(--BorderColor); padding-top: 24px;">
+                    <div style="margin-top: 32px; border-top: 1px solid var(--BorderDeep); padding-top: 24px;">
                         <h4 class="InputLabel" style="margin-bottom: 16px; color: var(--TextPrimary);">Trustworthy Witness 1</h4>
                         <div class="FormGrid">
                             <div class="InputGroup">
@@ -241,23 +234,23 @@ require_once '../includes/connection.php';
                         </div>
                     </div>
 
-                    <div style="margin-top: 32px; padding: 24px; border: 1px solid var(--AccentCyan); border-radius: 12px; background: rgba(0, 240, 255, 0.02);">
+                    <div style="margin-top: 32px; padding: 24px; border: 1px solid var(--VoltCyan); border-radius: 12px; background: var(--VoltGlow);">
                         <h4 class="SectionTitle" style="font-size: 1rem; margin-bottom: 16px;">Items Issued on Joining</h4>
                         <div class="FormGrid" style="grid-template-columns: repeat(3, 1fr);">
                             <label style="display: flex; align-items: center; cursor: pointer; gap: 12px;">
-                                <input type="checkbox" name="kit_shirt_trousers" style="width: 18px; height: 18px;"> Shirt and Trousers
+                                <input type="checkbox" name="kit_shirt_trousers" class="CustomCheckboxNode"> Shirt and Trousers
                             </label>
                             <label style="display: flex; align-items: center; cursor: pointer; gap: 12px;">
-                                <input type="checkbox" name="kit_cap" style="width: 18px; height: 18px;"> Cap
+                                <input type="checkbox" name="kit_cap" class="CustomCheckboxNode"> Cap
                             </label>
                             <label style="display: flex; align-items: center; cursor: pointer; gap: 12px;">
-                                <input type="checkbox" name="kit_belt" style="width: 18px; height: 18px;"> Belt
+                                <input type="checkbox" name="kit_belt" class="CustomCheckboxNode"> Belt
                             </label>
                             <label style="display: flex; align-items: center; cursor: pointer; gap: 12px;">
-                                <input type="checkbox" name="kit_boots" style="width: 18px; height: 18px;"> Boots
+                                <input type="checkbox" name="kit_boots" class="CustomCheckboxNode"> Boots
                             </label>
                             <label style="display: flex; align-items: center; cursor: pointer; gap: 12px;">
-                                <input type="checkbox" name="kit_jersey" style="width: 18px; height: 18px;"> Jersey
+                                <input type="checkbox" name="kit_jersey" class="CustomCheckboxNode"> Jersey
                             </label>
                         </div>
                     </div>
@@ -275,7 +268,7 @@ require_once '../includes/connection.php';
     </div>
 
     <script>
-        // 1. SIDEBAR TOGGLE MECHANISM
+        // SIDEBAR TOGGLE MECHANISM
         const toggleBtn = document.getElementById('SidebarToggleAction');
         const mainWrapper = document.getElementById('MainLayoutWrapper');
 
@@ -283,11 +276,11 @@ require_once '../includes/connection.php';
             mainWrapper.classList.toggle('SidebarCollapsed');
         });
 
-        // 2. THEME ENGINE (SYNCED WITH GLOBAL PREFERENCE)
+        // THEME ENGINE
         const themeBtn = document.getElementById('ThemeToggleBtn');
         const body = document.body;
 
-        const syncTheme = () => {
+        themeBtn.addEventListener('click', () => {
             if (body.classList.contains('DarkMode')) {
                 body.classList.remove('DarkMode');
                 body.classList.add('LightMode');
@@ -297,24 +290,22 @@ require_once '../includes/connection.php';
                 body.classList.add('DarkMode');
                 localStorage.setItem('ThemePreference', 'DarkMode');
             }
-        };
-
-        themeBtn.addEventListener('click', syncTheme);
-
-        // 3. ARMY STATUS TOGGLE LOGIC
-        const armyToggle = document.getElementById('ex-army-toggle');
-        const armyNode = document.getElementById('army-details-node');
-        armyToggle.addEventListener('change', () => {
-            armyNode.style.display = armyToggle.checked ? 'block' : 'none';
         });
 
-        // 4. LOAD SAVED THEME ON INITIALIZATION
+        // INITIALIZE THEME
         document.addEventListener('DOMContentLoaded', () => {
             const savedTheme = localStorage.getItem('ThemePreference');
             if (savedTheme === 'LightMode') {
                 body.classList.remove('DarkMode');
                 body.classList.add('LightMode');
             }
+        });
+
+        // ARMY STATUS TOGGLE LOGIC
+        const armyToggle = document.getElementById('ExArmyToggle');
+        const armyNode = document.getElementById('ArmyDetailsNode');
+        armyToggle.addEventListener('change', () => {
+            armyNode.style.display = armyToggle.checked ? 'block' : 'none';
         });
     </script>
 </body>

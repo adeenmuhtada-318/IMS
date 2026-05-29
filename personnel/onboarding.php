@@ -26,7 +26,8 @@ if (!isset($_SESSION['user_logged_in']) || $_SESSION['user_logged_in'] !== true)
         <!-- SIDEBAR NAVIGATION PANEL -->
         <aside id="LeftSidebarPanel">
             <div class="SidebarBrandingArea">
-                <div class="LogoText">Fast Security IMS</div>
+                <img src="../assets/images/company_logo.jpeg" class="CompanyLogo" alt="Logo">
+                <div class="BrandingTitle">FAST SECURITY IMS</div>
                 <button id="SidebarToggleAction">
                     <i class="fa-solid fa-bars"></i>
                 </button>
@@ -61,7 +62,7 @@ if (!isset($_SESSION['user_logged_in']) || $_SESSION['user_logged_in'] !== true)
                 <span>Switch Theme</span>
             </div>
 
-            <!-- DASHBOARD WIDGET COMPONENT REPAIR -->
+            <!-- HUD METRICS ROW -->
             <section class="HudMetricsRow">
                 <div class="TelemetryCounterBox" id="FieldForceCard">
                     <span class="TelemetryCounterLabel">Field Force</span>
@@ -77,7 +78,7 @@ if (!isset($_SESSION['user_logged_in']) || $_SESSION['user_logged_in'] !== true)
                 </div>
             </section>
 
-            <div class="PortalIdentityBlock" style="margin-bottom: 40px;">
+            <div class="PortalIdentityBlock">
                 <h1 class="HubTitleHeading">Human Resource Portal</h1>
                 <p class="HubSubText">Personnel onboarding, roster auditing, and performance compliance control center.</p>
             </div>
@@ -131,9 +132,20 @@ if (!isset($_SESSION['user_logged_in']) || $_SESSION['user_logged_in'] !== true)
             if (body.classList.contains('DarkMode')) {
                 body.classList.remove('DarkMode');
                 body.classList.add('LightMode');
+                localStorage.setItem('ThemePreference', 'LightMode');
             } else {
                 body.classList.remove('LightMode');
                 body.classList.add('DarkMode');
+                localStorage.setItem('ThemePreference', 'DarkMode');
+            }
+        });
+
+        // INITIALIZE THEME
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('ThemePreference');
+            if (savedTheme === 'LightMode') {
+                body.classList.remove('DarkMode');
+                body.classList.add('LightMode');
             }
         });
 

@@ -94,11 +94,11 @@ $sites = $pdo->query("SELECT s.*, c.client_name FROM client_sites s JOIN clients
     <!-- MASTER SHELL CONTAINER -->
     <div id="MainLayoutWrapper">
         
-        <!-- LEFT SIDEBAR PANEL (2-ITEM PERSISTENT) -->
+        <!-- SIDEBAR NAVIGATION PANEL -->
         <aside id="LeftSidebarPanel">
             <div class="SidebarBrandingArea">
-                <div class="LogoText">FAST IMS</div>
-                <button id="SidebarToggleAction" title="Toggle Sidebar">
+                <div class="BrandingTitle">FAST SECURITY IMS</div>
+                <button id="SidebarToggleAction">
                     <i class="fa-solid fa-bars"></i>
                 </button>
             </div>
@@ -127,20 +127,12 @@ $sites = $pdo->query("SELECT s.*, c.client_name FROM client_sites s JOIN clients
         <!-- MAIN WORKSPACE VIEWPORT -->
         <main id="RightSideViewport">
             
-            <!-- TOP STATUS TELEMETRY -->
-            <header class="TopStatusHeader" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;">
-                <div class="TelemetryNode" style="display: flex; align-items: center; gap: 12px;">
-                    <div class="StatusPulse" style="width: 8px; height: 8px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 10px #22c55e;"></div>
-                    <span class="StatusLabel" style="font-size: 0.8rem; font-weight: 700; color: #22c55e; letter-spacing: 1px;">DEPLOYMENT_SYSTEM: ACTIVE</span>
-                </div>
-                
-                <div class="ThemeModeToggle" id="ThemeToggleBtn" style="margin-bottom: 0;">
-                    <i class="fa-solid fa-circle-half-stroke"></i>
-                    <span class="ThemeLabel">Light / Dark Mode</span>
-                </div>
-            </header>
+            <div class="ThemeModeToggle" id="ThemeToggleBtn">
+                <i class="fa-solid fa-circle-half-stroke"></i>
+                <span>Switch Theme</span>
+            </div>
 
-            <div class="PortalIdentityBlock" style="margin-bottom: 40px;">
+            <div class="PortalIdentityBlock">
                 <h1 class="HubTitleHeading">Site Management & Deployment</h1>
                 <p class="HubSubText">Manager administrative terminal for site onboarding and force allocation.</p>
             </div>
@@ -157,14 +149,12 @@ $sites = $pdo->query("SELECT s.*, c.client_name FROM client_sites s JOIN clients
                 </div>
             <?php endif; ?>
 
-            <!-- STAGE 1: MANAGER ADMINISTRATIVE PANEL STRUCTURE -->
+            <!-- STAGE 1: MANAGER ADMINISTRATIVE PANEL -->
             <div class="FormGrid" style="grid-template-columns: 1.2fr 1fr; gap: 32px; align-items: flex-start;">
                 
                 <!-- NEW SITE ENROLLMENT CONTROL -->
                 <section class="FormClusterCard">
                     <h3 class="SectionTitle">Register New Operational Site</h3>
-                    <span class="SectionSubtext">Enroll new clients and establish official security location profiles.</span>
-                    
                     <form method="POST">
                         <input type="hidden" name="action" value="register_site">
                         <div class="InputGroup">
@@ -189,11 +179,9 @@ $sites = $pdo->query("SELECT s.*, c.client_name FROM client_sites s JOIN clients
                     </form>
                 </section>
 
-                <!-- ACTIVE DEPLOYMENT FORCE ALLOCATION FORM -->
+                <!-- ACTIVE DEPLOYMENT FORCE ALLOCATION -->
                 <section class="FormClusterCard">
                     <h3 class="SectionTitle">Force Assignment Matrix</h3>
-                    <span class="SectionSubtext">Allocate available tactical personnel to active security stations.</span>
-                    
                     <form method="POST">
                         <input type="hidden" name="action" value="assign_force">
                         <div class="InputGroup">
@@ -221,7 +209,7 @@ $sites = $pdo->query("SELECT s.*, c.client_name FROM client_sites s JOIN clients
                                 <option value="Night">Night Shift (20:00 - 08:00)</option>
                             </select>
                         </div>
-                        <button type="submit" class="PrimaryActionButton" style="width: 100%; margin-top: 12px; background-color: #00F0FF; color: #000;">DEPLOY_OPERATOR</button>
+                        <button type="submit" class="PrimaryActionButton" style="width: 100%; margin-top: 12px;">DEPLOY_OPERATOR</button>
                     </form>
                 </section>
             </div>
@@ -229,7 +217,6 @@ $sites = $pdo->query("SELECT s.*, c.client_name FROM client_sites s JOIN clients
             <!-- STAGE 2: DYNAMIC LIVE SITES MONITORING TABLE -->
             <div class="PortalIdentityBlock" style="margin-top: 48px; margin-bottom: 24px;">
                 <h3 class="SectionTitle" style="font-size: 1.5rem;">Registered Site Roster</h3>
-                <span class="SectionSubtext">Live synchronization of currently active operational locations and requirements.</span>
             </div>
 
             <div class="DataMatrixContainer">
@@ -245,15 +232,15 @@ $sites = $pdo->query("SELECT s.*, c.client_name FROM client_sites s JOIN clients
                     </thead>
                     <tbody>
                         <?php if (empty($sites)): ?>
-                            <tr><td colspan="5" style="text-align: center; padding: 60px; color: var(--TextSecondary);">NO_ACTIVE_SITES_DETECTED_IN_SYSTEM</td></tr>
+                            <tr><td colspan="5" style="text-align: center; padding: 60px; color: var(--TextDim);">NO_ACTIVE_SITES_DETECTED_IN_SYSTEM</td></tr>
                         <?php else: ?>
                             <?php foreach ($sites as $s): ?>
                                 <tr class="PremiumDataRow">
-                                    <td style="font-family: 'Courier New', monospace; font-weight: 700; color: var(--AccentCyan);">SITE-<?php echo str_pad($s['site_id'], 4, '0', STR_PAD_LEFT); ?></td>
+                                    <td style="font-family: 'Courier New', monospace; font-weight: 700; color: var(--VoltCyan);">SITE-<?php echo str_pad($s['site_id'], 4, '0', STR_PAD_LEFT); ?></td>
                                     <td style="font-weight: 700;"><?php echo htmlspecialchars($s['client_name']); ?></td>
                                     <td><?php echo htmlspecialchars($s['site_name']); ?></td>
                                     <td>
-                                        <span style="color: var(--AccentCyan); font-weight: 800;"><?php echo $s['required_day_guards']; ?></span> Operators Required
+                                        <span style="color: var(--VoltCyan); font-weight: 800;"><?php echo $s['required_day_guards']; ?></span> Operators Required
                                     </td>
                                     <td>
                                         <span style="padding: 6px 12px; background: rgba(34, 197, 94, 0.1); color: #22c55e; border: 1px solid rgba(34, 197, 94, 0.2); border-radius: 6px; font-size: 0.7rem; font-weight: 800; letter-spacing: 0.5px;">OPERATIONAL</span>
@@ -269,7 +256,7 @@ $sites = $pdo->query("SELECT s.*, c.client_name FROM client_sites s JOIN clients
     </div>
 
     <script>
-        // 1. SIDEBAR TOGGLE MECHANISM (SYNCED WITH MainLayoutWrapper)
+        // SIDEBAR TOGGLE MECHANISM
         const toggleBtn = document.getElementById('SidebarToggleAction');
         const mainWrapper = document.getElementById('MainLayoutWrapper');
 
@@ -277,11 +264,11 @@ $sites = $pdo->query("SELECT s.*, c.client_name FROM client_sites s JOIN clients
             mainWrapper.classList.toggle('SidebarCollapsed');
         });
 
-        // 2. THEME ENGINE (SYNCED WITH GLOBAL PREFERENCE)
+        // THEME ENGINE
         const themeBtn = document.getElementById('ThemeToggleBtn');
         const body = document.body;
 
-        const syncTheme = () => {
+        themeBtn.addEventListener('click', () => {
             if (body.classList.contains('DarkMode')) {
                 body.classList.remove('DarkMode');
                 body.classList.add('LightMode');
@@ -291,11 +278,9 @@ $sites = $pdo->query("SELECT s.*, c.client_name FROM client_sites s JOIN clients
                 body.classList.add('DarkMode');
                 localStorage.setItem('ThemePreference', 'DarkMode');
             }
-        };
+        });
 
-        themeBtn.addEventListener('click', syncTheme);
-
-        // 3. INITIALIZE SAVED THEME
+        // INITIALIZE THEME
         document.addEventListener('DOMContentLoaded', () => {
             const savedTheme = localStorage.getItem('ThemePreference');
             if (savedTheme === 'LightMode') {

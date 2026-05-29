@@ -86,12 +86,12 @@ try {
         .StatusLeave { background: rgba(255, 107, 0, 0.1); color: #ff6b00; border: 1px solid rgba(255, 107, 0, 0.2); }
 
         .ActionIconBtn {
-            color: var(--TextSecondary);
+            color: var(--TextDim);
             font-size: 1.1rem;
             margin-right: 12px;
             transition: color 0.2s ease;
         }
-        .ActionIconBtn:hover { color: var(--AccentCyan); }
+        .ActionIconBtn:hover { color: var(--VoltCyan); }
 
         .PaginationWrapper {
             display: flex;
@@ -102,13 +102,18 @@ try {
         .PageLink {
             padding: 8px 16px;
             border-radius: 8px;
-            border: 1px solid var(--BorderColor);
+            border: 1px solid var(--BorderDeep);
             font-weight: 600;
             font-size: 0.85rem;
             transition: all 0.2s ease;
         }
-        .PageLink.ActivePage { background: var(--AccentCyan); color: #000; border-color: var(--AccentCyan); }
-        .PageLink:hover:not(.ActivePage) { border-color: var(--AccentCyan); color: var(--AccentCyan); }
+        .PageLink.ActivePage { background: var(--VoltCyan); color: #000; border-color: var(--VoltCyan); }
+        .PageLink:hover:not(.ActivePage) { border-color: var(--VoltCyan); color: var(--VoltCyan); }
+
+        /* Filter Block Sync */
+        .FilterControlBlock {
+            margin-bottom: 32px;
+        }
     </style>
 </head>
 <body class="DarkMode">
@@ -118,8 +123,8 @@ try {
         <!-- SIDEBAR NAVIGATION PANEL -->
         <aside id="LeftSidebarPanel">
             <div class="SidebarBrandingArea">
-                <div class="LogoText">FAST IMS</div>
-                <button id="SidebarToggleAction" title="Toggle Sidebar">
+                <div class="BrandingTitle">FAST SECURITY IMS</div>
+                <button id="SidebarToggleAction">
                     <i class="fa-solid fa-bars"></i>
                 </button>
             </div>
@@ -145,20 +150,13 @@ try {
             </div>
         </aside>
 
-        <!-- MAIN VIEWPORT CONTAINER -->
+        <!-- MAIN WORKSPACE VIEWPORT -->
         <main id="RightSideViewport">
             
-            <header class="TopStatusHeader" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;">
-                <div class="TelemetryNode" style="display: flex; align-items: center; gap: 12px;">
-                    <div class="StatusPulse" style="width: 8px; height: 8px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 10px #22c55e;"></div>
-                    <span class="StatusLabel" style="font-size: 0.8rem; font-weight: 700; color: #22c55e; letter-spacing: 1px;">DATABASE_LINK: STABLE</span>
-                </div>
-                
-                <div class="ThemeModeToggle" id="ThemeToggleBtn" style="margin-bottom: 0;">
-                    <i class="fa-solid fa-circle-half-stroke"></i>
-                    <span class="ThemeLabel">Light / Dark Mode</span>
-                </div>
-            </header>
+            <div class="ThemeModeToggle" id="ThemeToggleBtn">
+                <i class="fa-solid fa-circle-half-stroke"></i>
+                <span>Switch Theme</span>
+            </div>
 
             <div class="PortalIdentityBlock">
                 <h1 class="HubTitleHeading">Personnel Records Directory</h1>
@@ -169,7 +167,7 @@ try {
             <section class="FilterControlBlock">
                 <form method="GET" style="display: flex; width: 100%; gap: 20px;">
                     <div style="flex: 1; position: relative;">
-                        <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--TextSecondary);"></i>
+                        <i class="fa-solid fa-magnifying-glass" style="position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--TextDim);"></i>
                         <input type="text" name="search" class="ModernInput" style="width: 100%; padding-left: 45px;" value="<?php echo htmlspecialchars($search); ?>" placeholder="Search Full Name or Guard ID...">
                     </div>
                     <select name="status" class="ModernInput" style="width: 200px;" onchange="this.form.submit()">
@@ -197,11 +195,11 @@ try {
                     </thead>
                     <tbody>
                         <?php if (empty($guards)): ?>
-                            <tr><td colspan="6" style="text-align: center; padding: 60px; color: var(--TextSecondary);">NO RECORDS DETECTED IN ACTIVE DATABASE</td></tr>
+                            <tr><td colspan="6" style="text-align: center; padding: 60px; color: var(--TextDim);">NO RECORDS DETECTED IN ACTIVE DATABASE</td></tr>
                         <?php else: ?>
                             <?php foreach ($guards as $g): ?>
                                 <tr class="RosterRow" onclick="window.location.href='view_guard.php?id=<?php echo $g['guard_id']; ?>'">
-                                    <td style="font-family: 'Courier New', monospace; font-weight: 700; color: var(--AccentCyan);"><?php echo htmlspecialchars($g['guard_no']); ?></td>
+                                    <td style="font-family: 'Courier New', monospace; font-weight: 700; color: var(--VoltCyan);"><?php echo htmlspecialchars($g['guard_no']); ?></td>
                                     <td style="font-weight: 700;"><?php echo htmlspecialchars($g['full_name']); ?></td>
                                     <td><?php echo htmlspecialchars($g['designation']); ?></td>
                                     <td><?php echo htmlspecialchars($g['home_district']); ?></td>
@@ -254,7 +252,7 @@ try {
         const themeBtn = document.getElementById('ThemeToggleBtn');
         const body = document.body;
 
-        const syncTheme = () => {
+        themeBtn.addEventListener('click', () => {
             if (body.classList.contains('DarkMode')) {
                 body.classList.remove('DarkMode');
                 body.classList.add('LightMode');
@@ -264,9 +262,7 @@ try {
                 body.classList.add('DarkMode');
                 localStorage.setItem('ThemePreference', 'DarkMode');
             }
-        };
-
-        themeBtn.addEventListener('click', syncTheme);
+        });
 
         // INITIALIZE THEME
         document.addEventListener('DOMContentLoaded', () => {

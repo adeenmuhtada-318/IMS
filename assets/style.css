@@ -1,72 +1,85 @@
+/**
+ * IMS TACTICAL - MASTER DESIGN SYSTEM v5.5
+ * Architecture: PascalCase Design Tokens & Structural Containment
+ * Theme: Modern Navy (Dark/Light Hybrid)
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;800&display=swap');
+
 :root {
-    /* STRICT PASCALCASE DESIGN TOKENS - NO HYPHENS OR UNDERSCORES */
-    --BackgroundColor: #0B0F19;
-    --CardBackground: #161F30;
-    --AccentCyan: #00F0FF;
+    /* --- DARK THEME TOKENS --- */
+    --BaseCanvas: #0B0F19;
+    --InteractiveCard: #161F30;
+    --InputSurface: #0F172A;
+    --BorderDeep: #23324C;
+    
+    --VoltCyan: #00F0FF;
+    --VoltGlow: rgba(0, 240, 255, 0.15);
+    --AlertOrange: #FF6B00;
+    --AlertGlow: rgba(255, 107, 0, 0.15);
+    
     --TextPrimary: #FFFFFF;
-    --TextSecondary: #94A3B8;
-    --SidebarBackground: #111827;
-    --BorderColor: rgba(255, 255, 255, 0.1);
-    --InputBackground: #111A2E;
-    --InputBorder: #23324C;
-    --WidgetLabel: #8A99AD;
-    --TransitionStandard: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    --TextDim: #8A99AD;
+    
+    --TransitionStandard: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    --RadiusStandard: 12px;
 }
 
-.LightMode {
-    --BackgroundColor: #F9FAFB;
-    --CardBackground: #FFFFFF;
-    --AccentCyan: #00A3C4;
+/* --- LIGHT THEME TOKENS --- */
+body.LightMode {
+    --BaseCanvas: #F9FAFB;
+    --InteractiveCard: #FFFFFF;
+    --InputSurface: #F3F4F6;
+    --BorderDeep: #E5E7EB;
+    
+    --VoltCyan: #00A3C4;
+    --VoltGlow: rgba(0, 163, 196, 0.15);
+    --AlertOrange: #E65100;
+    --AlertGlow: rgba(230, 81, 0, 0.15);
+    
     --TextPrimary: #1F2937;
-    --TextSecondary: #64748B;
-    --SidebarBackground: #FFFFFF;
-    --BorderColor: rgba(0, 0, 0, 0.1);
-    --InputBackground: #FFFFFF;
-    --InputBorder: #D1D5DB;
-    --WidgetLabel: #64748B;
+    --TextDim: #64748B;
 }
 
-* {
+/* 1. GLOBAL PAGE LOCK FRAMEWORK */
+html, body {
+    height: 100%;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', 'Segoe UI', sans-serif;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-body {
-    background-color: var(--BackgroundColor);
-    color: var(--TextPrimary);
     overflow: hidden;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    font-family: 'Poppins', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    background-color: var(--BaseCanvas);
+    color: var(--TextPrimary);
 }
 
-/* MASTER GRID ENGINE */
+a, button {
+    text-decoration: none !important;
+    color: inherit;
+    cursor: pointer;
+}
+
+/* 2. MASTER APP LAYOUT WRAPPER */
 #MainLayoutWrapper {
     display: grid;
     grid-template-columns: 260px 1fr;
-    height: 100vh;
     width: 100vw;
+    height: 100vh;
     overflow: hidden;
-    transition: grid-template-columns var(--TransitionStandard);
+    transition: grid-template-columns 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 #MainLayoutWrapper.SidebarCollapsed {
     grid-template-columns: 70px 1fr;
 }
 
-/* SIDEBAR LAYOUT */
+/* 3. SIDEBAR NAVIGATION PANEL */
 #LeftSidebarPanel {
-    background-color: var(--SidebarBackground);
-    border-right: 1px solid var(--BorderColor);
+    background-color: var(--InteractiveCard);
+    border-right: 1px solid var(--BorderDeep);
     display: flex;
     flex-direction: column;
-    height: 100vh;
-    position: relative;
+    overflow: hidden;
     z-index: 1000;
 }
 
@@ -74,244 +87,206 @@ body {
     padding: 24px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    min-height: 80px;
+    gap: 12px;
 }
 
-.LogoText {
-    font-size: 1.1rem;
+.CompanyLogo {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+
+.BrandingTitle {
     font-weight: 800;
-    color: var(--AccentCyan);
+    letter-spacing: 1px;
+    color: var(--VoltCyan);
+    font-size: 1.1rem;
     white-space: nowrap;
-    overflow: hidden;
+    transition: opacity 0.2s;
 }
 
 #SidebarToggleAction {
     background: transparent;
     border: none;
-    color: var(--TextSecondary);
-    cursor: pointer;
-    font-size: 1.25rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: color 0.2s ease;
+    color: var(--TextDim);
+    font-size: 1.2rem;
+    transition: var(--TransitionStandard);
+    margin-left: auto;
 }
 
 #SidebarToggleAction:hover {
-    color: var(--AccentCyan);
+    color: var(--VoltCyan);
 }
 
 .NavigationLinkList {
-    list-style: none;
     flex-grow: 1;
-    padding-top: 12px;
+    padding: 20px 0;
 }
 
 .NavigationItem {
-    padding: 2px 12px;
+    padding: 2px 16px;
 }
 
 .NavigationAnchor {
     display: flex;
     align-items: center;
-    gap: 14px;
-    padding: 12px 16px;
-    width: 100%;
-    border-radius: 12px;
-    color: var(--TextSecondary);
-    transition: all 0.2s ease;
-    font-weight: 500;
-    white-space: nowrap;
+    gap: 16px;
+    padding: 14px 16px;
+    border-radius: 8px;
+    color: var(--TextDim);
+    transition: var(--TransitionStandard);
 }
 
-.NavigationAnchor:hover {
-    background: rgba(0, 240, 255, 0.05);
-    color: var(--TextPrimary);
+.NavigationAnchor:hover, .ActiveMenuItem {
+    background: var(--VoltGlow);
+    color: var(--VoltCyan);
 }
 
 .ActiveMenuItem {
-    background: rgba(0, 240, 255, 0.1);
-    color: var(--AccentCyan);
-    font-weight: 600;
+    border-left: 3px solid var(--VoltCyan);
 }
 
 .MenuIconNode {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 18px;
-    min-width: 24px;
+    width: 24px;
+    text-align: center;
+    font-size: 1.1rem;
     flex-shrink: 0;
 }
 
 .MenuTextLabel {
-    font-size: 0.95rem;
-}
-
-/* COLLAPSED STATE LOGIC */
-.SidebarCollapsed .LogoText,
-.SidebarCollapsed .MenuTextLabel,
-.SidebarCollapsed .OperatorAccountHeader {
-    display: none;
-}
-
-.SidebarCollapsed .SidebarBrandingArea {
-    justify-content: center;
-    padding: 24px 0;
-}
-
-.SidebarCollapsed .NavigationItem {
-    padding: 4px 0;
-    display: flex;
-    justify-content: center;
-}
-
-.SidebarCollapsed .NavigationAnchor {
-    padding: 12px;
-    justify-content: center;
-    width: 50px;
-}
-
-.SidebarCollapsed .MenuIconNode {
-    margin: 0;
+    white-space: nowrap;
+    font-weight: 600;
+    font-size: 0.9rem;
 }
 
 .UserStatusComponent {
     padding: 24px;
-    border-top: 1px solid var(--BorderColor);
-    margin-top: auto;
+    border-top: 1px solid var(--BorderDeep);
 }
 
 .OperatorAccountHeader {
-    font-size: 0.85rem;
-    font-weight: 700;
-    color: var(--TextSecondary);
+    font-size: 0.65rem;
+    color: var(--TextDim);
     text-transform: uppercase;
+    letter-spacing: 1px;
     margin-bottom: 4px;
 }
 
 .SystemActiveFlag {
-    font-size: 0.75rem;
     font-weight: 800;
-    color: var(--AccentCyan);
-    letter-spacing: 1px;
+    font-size: 0.8rem;
+    color: var(--VoltCyan);
+    letter-spacing: 0.5px;
 }
 
-.SidebarCollapsed .UserStatusComponent {
-    display: flex;
-    justify-content: center;
-    padding: 24px 0;
-}
-
-/* INDEPENDENT CONTENT VIEWPORT */
+/* 4. PRIMARY WORKSPACE MAIN WINDOW */
 #RightSideViewport {
     display: flex;
     flex-direction: column;
     width: 100%;
     min-width: 0;
     height: 100vh;
-    padding: 24px 40px;
+    padding: 40px;
     overflow-y: auto;
     overflow-x: hidden;
-    background-color: var(--BackgroundColor);
+    box-sizing: border-box;
+    background: radial-gradient(circle at top right, var(--VoltGlow), transparent 40%);
 }
 
-/* TELEMETRY & WIDGET COMPONENTS */
-.HudMetricsRow {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 24px;
-    margin-bottom: 40px;
+/* 5. CUSTOM SCROLLBAR */
+#RightSideViewport::-webkit-scrollbar {
+    width: 6px;
+}
+#RightSideViewport::-webkit-scrollbar-track {
+    background: transparent;
+}
+#RightSideViewport::-webkit-scrollbar-thumb {
+    background: var(--BorderDeep);
+    border-radius: 10px;
+}
+#RightSideViewport::-webkit-scrollbar-thumb:hover {
+    background: var(--VoltCyan);
 }
 
-.TelemetryCounterBox, .DashboardWidgetCard {
-    background: var(--CardBackground);
-    border: 1px solid var(--InputBorder);
-    border-radius: 12px;
-    padding: 24px;
-    min-width: 240px;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+/* 6. COMPONENT: PORTAL IDENTITY */
+.PortalIdentityBlock {
+    margin-bottom: 48px;
 }
 
-.TelemetryCounterBox:hover, .DashboardWidgetCard:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
-    border-color: var(--AccentCyan);
+.HubTitleHeading {
+    font-size: 2.2rem;
+    font-weight: 800;
+    margin: 0 0 8px 0;
+    letter-spacing: -0.5px;
 }
 
-.TelemetryCounterLabel {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--WidgetLabel);
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+.HubSubText {
+    color: var(--TextDim);
+    font-size: 1rem;
+    margin: 0;
 }
 
-.TelemetryCounterValue {
-    font-size: 32px;
-    font-weight: 700;
-    color: var(--AccentCyan);
-    line-height: 1;
-}
-
-/* HUB GRID MATRIX */
+/* 7. HUB GRID MATRIX */
 .HubControlMatrixGrid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
     gap: 24px;
-    width: 100%;
-    margin-top: 32px;
-    padding-bottom: 40px;
 }
 
 .GatewayOptionCard {
-    background: var(--CardBackground);
-    border: 1px solid var(--BorderColor);
+    background-color: var(--InteractiveCard);
+    border: 1px solid var(--BorderDeep);
+    border-radius: var(--RadiusStandard);
     padding: 32px;
-    border-radius: 20px;
+    transition: var(--TransitionStandard);
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
+    gap: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .GatewayOptionCard:hover {
+    border-color: var(--VoltCyan);
     transform: translateY(-4px);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
-    border-color: var(--AccentCyan);
+    box-shadow: 0 12px 30px var(--VoltGlow);
 }
 
-/* FORM CONTROLS REFINEMENT */
+.CardTitleNode {
+    color: var(--VoltCyan);
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin: 0;
+}
+
+.CardSummaryText {
+    color: var(--TextDim);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* 8. FORM INTERACTION ENGINE */
 .FormClusterCard {
-    background: var(--CardBackground);
-    border: 1px solid var(--InputBorder);
+    background-color: var(--InteractiveCard);
+    border: 1px solid var(--BorderDeep);
+    border-radius: var(--RadiusStandard);
     padding: 32px;
-    border-radius: 20px;
     margin-bottom: 32px;
 }
 
 .SectionTitle {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     font-weight: 700;
-    color: var(--AccentCyan);
-    margin-bottom: 12px;
-}
-
-.SectionSubtext {
-    font-size: 0.9rem;
-    color: var(--TextSecondary);
+    color: var(--VoltCyan);
     margin-bottom: 24px;
-    display: block;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .FormGrid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
     gap: 24px;
 }
 
@@ -319,111 +294,180 @@ body {
     display: flex;
     flex-direction: column;
     gap: 8px;
-    margin-bottom: 20px;
 }
 
 .InputLabel {
-    font-size: 14px;
-    font-weight: 600;
-    color: var(--WidgetLabel);
-}
-
-input[type="text"], 
-input[type="date"], 
-input[type="number"],
-select, 
-textarea {
-    width: 100%;
-    padding: 12px 16px;
-    border-radius: 8px;
-    border: 1px solid var(--InputBorder);
-    background-color: var(--InputBackground);
-    color: var(--TextPrimary);
-    font-size: 15px;
-    outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-input:focus, 
-select:focus, 
-textarea:focus {
-    border-color: var(--AccentCyan);
-    box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.15);
-}
-
-.PrimaryActionButton {
-    background: var(--AccentCyan);
-    color: #000000;
-    border: none;
-    border-radius: 12px;
-    padding: 16px 32px;
-    font-size: 1rem;
-    font-weight: 800;
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--TextDim);
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
 }
 
-.PrimaryActionButton:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(0, 240, 255, 0.3);
+.ModernInput {
+    background-color: var(--InputSurface);
+    border: 1px solid var(--BorderDeep);
+    padding: 14px 16px;
+    border-radius: 8px;
+    color: var(--TextPrimary);
+    font-size: 0.95rem;
+    outline: none;
+    transition: var(--TransitionStandard);
 }
 
-/* ROSTER DATA TABLE REFINEMENT */
+.ModernInput:focus {
+    border-color: var(--VoltCyan);
+    box-shadow: 0 0 0 4px var(--VoltGlow);
+    background-color: var(--BaseCanvas);
+}
+
+/* 9. DATA TABLES */
 .DataMatrixContainer {
-    width: 100%;
-    margin-top: 16px;
+    overflow-x: auto;
 }
 
-.PremiumDataTable {
+.RosterDataTable, .PremiumDataTable, .AttendanceLogsTable {
     width: 100%;
     border-collapse: separate;
     border-spacing: 0 8px;
 }
 
-.PremiumDataTable th {
-    padding: 14px 18px;
-    text-transform: uppercase;
-    font-size: 12px;
-    letter-spacing: 1px;
-    font-weight: 700;
-    color: var(--WidgetLabel);
+.RosterDataTable th, .PremiumDataTable th, .AttendanceLogsTable th {
+    padding: 14px 20px;
     text-align: left;
+    font-size: 0.75rem;
+    color: var(--TextDim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
-.PremiumDataTable td {
-    padding: 16px 18px;
-    background-color: var(--CardBackground);
-    color: var(--TextPrimary);
-    border: none;
+.RosterDataTable td, .PremiumDataTable td, .AttendanceLogsTable td {
+    padding: 16px 20px;
+    background-color: var(--InteractiveCard);
+    border-top: 1px solid transparent;
+    border-bottom: 1px solid transparent;
+    transition: var(--TransitionStandard);
 }
 
-.PremiumDataTable tr td:first-child {
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
-}
-
-.PremiumDataTable tr td:last-child {
-    border-top-right-radius: 8px;
-    border-bottom-right-radius: 8px;
-}
-
-.PremiumDataRow:hover td {
+.RosterRow:hover td, .PremiumDataRow:hover td {
     background: rgba(0, 240, 255, 0.05);
-    cursor: pointer;
+    border-color: rgba(0, 240, 255, 0.1);
 }
 
-/* THEME TOGGLE */
+/* 10. BUTTON SYSTEM */
+.PrimaryActionButton {
+    background-color: var(--VoltCyan);
+    color: #000000;
+    border: none;
+    border-radius: 8px;
+    padding: 16px 32px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: var(--TransitionStandard);
+}
+
+.PrimaryActionButton:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+/* 11. HUD METRICS */
+.HudMetricsRow {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 40px;
+}
+
+.TelemetryCounterBox, .DashboardWidgetCard {
+    background-color: var(--InteractiveCard);
+    border: 1px solid var(--BorderDeep);
+    border-radius: var(--RadiusStandard);
+    padding: 24px;
+    text-align: center;
+}
+
+.TelemetryCounterLabel {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--TextDim);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+}
+
+.TelemetryCounterValue {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--VoltCyan);
+}
+
+/* 12. SIDEBAR COLLAPSE HIDE RULES */
+#MainLayoutWrapper.SidebarCollapsed .MenuTextLabel,
+#MainLayoutWrapper.SidebarCollapsed .BrandingTitle,
+#MainLayoutWrapper.SidebarCollapsed .OperatorAccountHeader,
+#MainLayoutWrapper.SidebarCollapsed .SystemActiveFlag {
+    display: none;
+}
+
+#MainLayoutWrapper.SidebarCollapsed .NavigationAnchor {
+    justify-content: center;
+}
+
+/* 13. THEME TOGGLE */
 .ThemeModeToggle {
-    cursor: pointer;
-    background: var(--CardBackground);
-    border: 1px solid var(--BorderColor);
-    padding: 10px 20px;
-    border-radius: 20px;
     display: flex;
     align-items: center;
-    gap: 10px;
-    align-self: flex-end;
-    margin-bottom: 32px;
+    gap: 12px;
+    color: var(--TextDim);
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.2s;
+    margin-bottom: 24px;
+}
+
+.ThemeModeToggle:hover {
+    color: var(--VoltCyan);
+}
+
+/* 14. TACTICAL CHECKBOX NODES */
+.CustomCheckboxNode {
+    appearance: none;
+    -webkit-appearance: none;
+    width: 24px;
+    height: 24px;
+    border: 2px solid var(--VoltCyan) !important;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+    transition: var(--TransitionStandard);
+    background: var(--InputSurface) !important;
+    display: inline-block;
+    vertical-align: middle;
+    box-shadow: 0 0 5px rgba(0, 240, 255, 0.1);
+}
+
+.CustomCheckboxNode:hover {
+    background: var(--VoltGlow) !important;
+    box-shadow: 0 0 10px var(--VoltGlow);
+    transform: scale(1.05);
+}
+
+.CustomCheckboxNode:checked {
+    background-color: var(--VoltCyan) !important;
+    border-color: var(--VoltCyan) !important;
+    box-shadow: 0 0 15px var(--VoltGlow);
+}
+
+.CustomCheckboxNode:checked::after {
+    content: '\f00c';
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    color: #0B0F19;
+    font-size: 14px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }

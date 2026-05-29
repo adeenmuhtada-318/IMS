@@ -1,7 +1,7 @@
 # SecurityFirm_Inventory - IMS Phase-V (Tactical Command)
 
 ## 🛡️ Project Overview
-A specialized, enterprise-grade **Inventory Management System (IMS)** designed for high-stakes security firm operations. This "Modern Navy" tactical platform features a hardened backend architecture and a high-contrast, low-fatigue operator interface. It is optimized for real-time asset tracking, personnel readiness monitoring, and compliance auditing.
+A specialized, enterprise-grade **Inventory Management System (IMS)** designed for high-stakes security firm operations. This **"Modern Navy"** tactical platform features a hardened backend architecture and a high-contrast, low-fatigue operator interface. It is optimized for real-time asset tracking, personnel readiness monitoring, and compliance auditing.
 
 ---
 
@@ -10,7 +10,7 @@ A specialized, enterprise-grade **Inventory Management System (IMS)** designed f
 - **Advanced Collapsible Sidebar:** High-performance transition engine between expanded (260px) and collapsed (70px) navigation states.
 - **Hardware-Accelerated UI:** Premium interactive micro-interactions, cubic-bezier transitions, and hardware-level hover elevation effects.
 - **Hardened Data Bridge:** Isolated `config.php` with native PDO query processing (`EMULATE_PREPARES => false`).
-- **Security Logic Engine:** Multi-layer authentication featuring System-wide Audit Logging and RBAC data masking.
+- **Security Logic Engine:** Multi-layer authentication featuring System-wide Audit Logging, CSRF protection, and RBAC.
 - **Real-Time Telemetry:** Live "HUD" metrics tracking Field Force strength, Supply Risk, and Blacklist status.
 
 ---
@@ -47,8 +47,7 @@ IMS/
 ## 🔑 Authorized Access (Default)
 | Role | Operator ID | Passkey |
 | :--- | :--- | :--- |
-| **System Admin** | `ADMIN_SECURE` | `TACTICAL_2026` |
-| **Operations Director** | `director_operation@fast` | `mian_habibullah` |
+| **System Admin** | `ADMIN_SECURE` | `Password@123` |
 
 ---
 *Developed for Security Firm Simulation & Educational Purposes.*
