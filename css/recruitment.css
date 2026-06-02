@@ -1,0 +1,200 @@
+/**
+ * STYLING MATRIX - Recruitment Form
+ * Theme: Modern Navy / Slate Professional V10.0
+ */
+
+:root {
+    --DeepDenim: #0B0F19;
+    --GreyBlueSlate: #1E293B;
+    --VibrantOrange: #F97316;
+    --SuccessEmerald: #10B981;
+    --AlertCrimson: #EF4444;
+    --TextPrimary: #F8FAFC;
+    --TextSecondary: #94A3B8;
+    --InputBorder: #334155;
+}
+
+/* WORKSPACE LAYOUT */
+.RegistrationWorkspace {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto;
+    background: var(--DeepDenim);
+}
+
+.FormContainer {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* COMPONENT: SLATE PANEL */
+.EnrollmentSlate {
+    background: var(--GreyBlueSlate);
+    padding: 32px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.3);
+}
+
+/* SECTION TYPOGRAPHY */
+.SectionDivider {
+    margin-bottom: 40px;
+}
+
+.SectionHeader {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--InputBorder);
+}
+
+.SectionLabel {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--VibrantOrange);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* GRID ALIGNMENT MODELS */
+.FormGridRow {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.FormGridRowThree {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+/* INPUT CONTROLS */
+.FieldGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.FieldLabel {
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--TextSecondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.TacticalInput, .TacticalSelect {
+    width: 100%;
+    background: var(--DeepDenim);
+    border: 1px solid var(--InputBorder);
+    padding: 14px 16px;
+    border-radius: 8px;
+    color: var(--TextPrimary);
+    font-size: 0.95rem;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.TacticalInput:focus, .TacticalSelect:focus {
+    outline: none;
+    border-color: var(--VibrantOrange);
+    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15);
+}
+
+.TacticalInput[readonly] {
+    background: rgba(0, 0, 0, 0.3);
+    border-color: transparent;
+    color: var(--TextSecondary);
+    cursor: not-allowed;
+}
+
+/* FLASH NOTIFICATIONS */
+.FlashBanner {
+    padding: 20px;
+    border-radius: 12px;
+    margin-bottom: 32px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.FlashSuccess {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--SuccessEmerald);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.FlashError {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--AlertCrimson);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+/* ACTION CONTROLS */
+.SubmitAction {
+    background: var(--VibrantOrange);
+    color: white;
+    border: none;
+    padding: 18px 48px;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 900;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s;
+}
+
+.SubmitAction:hover {
+    background: #ea580c;
+    transform: translateY(-2px);
+}
+
+.SubmitAction:active {
+    transform: translateY(0);
+}
+
+/* FORM VALIDATION HOOKS */
+.ValidationFeedback {
+    font-size: 0.7rem;
+    font-weight: 600;
+    margin-top: 4px;
+    display: none;
+}
+
+.InvalidField .TacticalInput {
+    border-color: var(--AlertCrimson);
+}
+
+.InvalidField .ValidationFeedback {
+    display: block;
+    color: var(--AlertCrimson);
+}
+/* Global Sidebar Fix */
+.MasterViewportLayout {
+    display: flex;
+    width: 100%;
+}
+.TacticalSidebar {
+    width: 250px;
+    background-color: #060b13;
+    min-height: 100vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+}
+.NavigationMenu a {
+    display: block;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 4px;
+}
+.NavigationMenu a:hover {
+    background-color: #f97316;
+}

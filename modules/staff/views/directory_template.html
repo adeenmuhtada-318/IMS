@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Directory | Fast Security</title>
+    
+    <!-- ISOLATED STAFF MODULE STYLES -->
+    <link rel="stylesheet" href="css/staff.css">
+    
+    <style>
+        /* CORE RESET FOR TEMPLATE INTEGRITY */
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body>
+
+    <div class="MasterViewportLayout">
+        
+        <!-- DYNAMIC SIDEBAR INJECTION -->
+        {{GLOBAL_SIDEBAR}}
+        
+        <main class="WorkspaceStream">
+            <header class="HeaderGroupBlock">
+                <h1>Personnel Registry</h1>
+                <p class="SubHeaderLabel">Comprehensive directory of active tactical personnel and field staff.</p>
+            </header>
+
+            <!-- REACTIVE ALERT NOTIFICATIONS -->
+            {{ALERT_BANNER}}
+
+            <section class="DirectoryGridContainer">
+                
+                <table class="TacticalDataTable">
+                    <thead>
+                        <tr>
+                            <th>Badge ID</th>
+                            <th>Employee Name</th>
+                            <th>CNIC Reference</th>
+                            <th>Contact Phone</th>
+                            <th>Experience Tier</th>
+                            <th>Duty Status</th>
+                            <th>Action Center</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- DYNAMIC ROW INJECTION -->
+                        {{DIRECTORY_ROWS}}
+                    </tbody>
+                </table>
+
+            </section>
+        </main>
+    </div>
+
+</body>
+</html>

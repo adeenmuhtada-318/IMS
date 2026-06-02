@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personnel Enrollment | Fast Security</title>
+    <link rel="stylesheet" href="css/recruitment.css">
+</head>
+<body>
+
+    <div class="MasterViewportLayout">
+        
+        {{GLOBAL_SIDEBAR}}
+        
+        <main class="WorkspaceStream">
+            <header class="HeaderGroupBlock">
+                <h1>New Employee Enrollment</h1>
+                <p class="SubHeaderLabel">Modular Registry Terminal | Operational Readiness Portal.</p>
+            </header>
+
+            <section class="HiringFormContainer">
+                
+                {{SUCCESS_BANNER}}
+                {{ERROR_BANNER}}
+
+                <form id="hiringRegistrationForm" action="process_recruitment.php" method="POST">
+                    
+                    <div class="SectionDivider" style="margin-top: 0;">PERSONAL INFORMATION</div>
+                    <div class="FormGridRow">
+                        <div class="FormGroupBlock">
+                            <label>FULL NAME *</label>
+                            <input type="text" name="full_name" class="HumanizedInput" required placeholder="Enter employee full name">
+                        </div>
+                        <div class="FormGroupBlock">
+                            <label>CNIC NUMBER *</label>
+                            <input type="text" id="cnic_number" name="cnic_number" class="HumanizedInput" required maxlength="15" placeholder="00000-0000000-0">
+                        </div>
+                    </div>
+
+                    <div class="FormGridRow">
+                        <div class="FormGroupBlock">
+                            <label>CONTACT PHONE *</label>
+                            <input type="text" id="phone_number" name="phone_number" class="HumanizedInput" required maxlength="12" placeholder="0300-0000000">
+                        </div>
+                        <div class="FormGroupBlock">
+                            <label>DATE OF BIRTH</label>
+                            <input type="date" name="date_of_birth" class="HumanizedInput">
+                        </div>
+                    </div>
+
+                    <div class="FormGridRow">
+                        <div class="FormGroupBlock" style="grid-column: span 2;">
+                            <label>HOME ADDRESS / CITY / DISTRICT</label>
+                            <input type="text" name="home_address" class="HumanizedInput" placeholder="Enter complete residential address">
+                        </div>
+                    </div>
+
+                    <div class="SectionDivider">SECURITY & BACKGROUND PROFILE</div>
+                    <div class="FormGridRow">
+                        <div class="FormGroupBlock">
+                            <label>BLOOD GROUP</label>
+                            <select name="blood_group" class="HumanizedSelect">
+                                <option value="Unknown / Not Tested">Unknown / Not Tested</option>
+                                <option value="A+">A+</option>
+                                <option value="B+">B+</option>
+                                <option value="O+">O+</option>
+                                <option value="AB+">AB+</option>
+                            </select>
+                        </div>
+                        <div class="FormGroupBlock">
+                            <label>CLEARANCE LEVEL / EXPERIENCE</label>
+                            <select name="clearance_level" class="HumanizedSelect">
+                                <option value="Entry Level (Trainee)">Entry Level (Trainee)</option>
+                                <option value="Ex-Military Personnel">Ex-Military Personnel</option>
+                                <option value="VIP Elite Security">VIP Elite Security</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="FormGridRow">
+                        <div class="FormGroupBlock">
+                            <label>EMERGENCY CONTACT PERSON</label>
+                            <input type="text" name="emergency_contact" class="HumanizedInput" placeholder="Next of Kin Name">
+                        </div>
+                        <div class="FormGroupBlock">
+                            <label>EMERGENCY CONTACT NUMBER</label>
+                            <input type="text" name="emergency_phone" class="HumanizedInput" placeholder="0300-0000000">
+                        </div>
+                    </div>
+
+                    <div class="SectionDivider">OPERATIONAL INITIALIZATION</div>
+                    <div class="FormGridRow">
+                        <div class="FormGroupBlock">
+                            <label>BASE PAYROLL MULTIPLIER</label>
+                            <input type="text" name="monthly_base_salary" class="HumanizedInput" value="45000" placeholder="Rs. 45,000 (Base)">
+                        </div>
+                        <div class="FormGroupBlock">
+                            <label>DEFAULT DUTY STATUS</label>
+                            <select name="deployment_status" class="HumanizedSelect">
+                                <option value="Free">Free / Unassigned</option>
+                                <option value="Active">Active Deployment</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="ActionButtonGroup">
+                        <button type="submit" class="SubmitPrimaryButton">Authorize Enrollment</button>
+                    </div>
+
+                </form>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/recruitment.js"></script>
+</body>
+</html>

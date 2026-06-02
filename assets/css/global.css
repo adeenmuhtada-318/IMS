@@ -1,0 +1,15 @@
+/**
+ * GLOBAL DESIGN TOKEN SPACE
+ * Shared across all enterprise modules.
+ */
+:root {
+    --DeepDenim: #0B0F19;
+    --GreyBlueSlate: #1E293B;
+    --VibrantOrange: #F97316;
+    --ActiveEmerald: #10B981;
+    --TextPrimary: #F8FAFC;
+    --TextDim: #94A3B8;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+body { background: var(--DeepDenim); color: var(--TextPrimary); }

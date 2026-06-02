@@ -1,0 +1,97 @@
+/* ==========================================================
+   FAST SECURITY - INTEGRATED DESIGN SYSTEM V2.0
+   ========================================================== */
+
+:root {
+    --DeepDenim: #0B0F19;
+    --SidebarBg: #060b13;
+    --SlateCard: #151C28;
+    --GreyBlueSlate: #1E293B;
+    --VibrantOrange: #F97316;
+    --EmeraldActive: #10B981;
+    --ActionBlue: #3B82F6;
+    --AlertCrimson: #EF4444;
+    --TextPrimary: #F8FAFC;
+    --TextDim: #94A3B8;
+    --BorderStroke: rgba(255, 255, 255, 0.05);
+}
+
+* { box-sizing: border-box; }
+
+body { margin: 0; padding: 0; font-family: 'Segoe UI', sans-serif; }
+
+/* MASTER VIEWPORT GRID */
+.MasterViewportLayout {
+    display: flex;
+    width: 100%;
+    min-height: 100vh;
+    background: var(--DeepDenim);
+    overflow-x: hidden;
+}
+
+/* SIDEBAR LAYOUT */
+.TacticalSidebar {
+    width: 250px;
+    min-width: 250px;
+    max-width: 250px;
+    background-color: var(--SidebarBg);
+    min-height: 100vh;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--BorderStroke);
+    position: sticky;
+    top: 0;
+}
+
+.NavigationMenu { display: flex; flex-direction: column; gap: 5px; margin-top: 20px; }
+
+.NavigationMenu a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--TextPrimary);
+    text-decoration: none;
+    padding: 12px 15px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    transition: 0.2s;
+}
+
+.NavigationMenu a:hover {
+    background-color: var(--VibrantOrange);
+    color: #fff;
+}
+
+/* WORKSPACE STREAM */
+.WorkspaceStream {
+    flex: 1;
+    min-width: 0;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+}
+
+.DirectoryGridContainer {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.HeaderGroupBlock { margin-bottom: 40px; }
+.HeaderGroupBlock h1 { font-size: 2.2rem; font-weight: 900; text-transform: uppercase; color: var(--TextPrimary); margin: 0; }
+.SubHeaderLabel { color: var(--TextDim); font-size: 1rem; text-transform: uppercase; margin-top: 4px; }
+
+/* DATA TABLE ENGINE */
+.TacticalDataTable { width: 100%; min-width: 900px; border-collapse: separate; border-spacing: 0 8px; }
+.TacticalDataTable th { text-align: left; padding: 12px 20px; font-size: 0.75rem; color: var(--TextDim); text-transform: uppercase; }
+.TacticalDataTable td { padding: 16px 20px; background: var(--SlateCard); color: var(--TextPrimary); border-top: 1px solid var(--BorderStroke); border-bottom: 1px solid var(--BorderStroke); }
+
+/* ALERT & STATUS */
+.AlertBanner { padding: 16px 20px; border-radius: 8px; margin-bottom: 30px; font-weight: 700; display: flex; gap: 12px; }
+.AlertSuccess { background: rgba(16, 185, 129, 0.1); color: var(--EmeraldActive); border: 1px solid rgba(16, 185, 129, 0.2); }
+.AlertError { background: rgba(239, 68, 68, 0.1); color: var(--AlertCrimson); border: 1px solid rgba(239, 68, 68, 0.2); }
+
+.BadgeRef { color: var(--VibrantOrange); font-weight: 800; }
+.StatusPill { padding: 4px 12px; border-radius: 6px; font-size: 0.7rem; font-weight: 800; text-transform: uppercase; }
+.StatusFree { background: rgba(16, 185, 129, 0.1); color: var(--EmeraldActive); }
+.StatusActive { background: rgba(59, 130, 246, 0.1); color: var(--ActionBlue); }

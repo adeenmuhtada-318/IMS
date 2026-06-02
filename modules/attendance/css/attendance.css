@@ -1,0 +1,244 @@
+:root {
+    --DeepDenim: #0B0F19;
+    --SlateCard: #151C28;
+    --GreyBlueSlate: #1E293B;
+    --VibrantOrange: #F97316;
+    --EmeraldActive: #10B981;
+    --AlertCrimson: #EF4444;
+    --TextPrimary: #F8FAFC;
+    --TextDim: #94A3B8;
+    --BorderStroke: rgba(255, 255, 255, 0.05);
+    --CardShadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body.ThemeModernNavy {
+    background: var(--DeepDenim);
+    color: var(--TextPrimary);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    overflow: hidden;
+}
+
+.ModuleWrapper {
+    display: flex;
+    height: 100vh;
+}
+
+/* SIDEBAR INJECTION STYLES */
+.TacticalSidebar { width: 280px; background: #070A11; border-right: 1px solid var(--BorderStroke); padding: 30px; }
+
+.ContentStream {
+    flex: 1;
+    padding: 50px;
+    overflow-y: auto;
+}
+
+.ModuleHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 40px;
+}
+
+.ModuleHeader h1 {
+    font-size: 2.2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    color: #fff;
+}
+
+.ModuleHeader p {
+    color: var(--TextDim);
+    font-size: 0.95rem;
+    margin-top: 5px;
+}
+
+.DateStamp {
+    background: rgba(249, 115, 22, 0.1);
+    color: var(--VibrantOrange);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 800;
+    font-size: 0.8rem;
+    border: 1px solid rgba(249, 115, 22, 0.2);
+}
+
+/* DATA TABLE */
+.TableControlBar {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.ShiftSelect {
+    background: var(--SlateCard);
+    color: #fff;
+    border: 1px solid var(--BorderStroke);
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    cursor: pointer;
+}
+
+.TacticalDataTable {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 8px;
+}
+
+.TacticalDataTable th {
+    text-align: left;
+    padding: 15px 20px;
+    font-size: 0.7rem;
+    color: var(--TextDim);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.TacticalDataTable td {
+    background: var(--SlateCard);
+    padding: 20px;
+    border-top: 1px solid var(--BorderStroke);
+    border-bottom: 1px solid var(--BorderStroke);
+    font-size: 0.9rem;
+    vertical-align: middle;
+}
+
+.TacticalDataTable td:first-child { border-left: 1px solid var(--BorderStroke); border-radius: 12px 0 0 12px; }
+.TacticalDataTable td:last-child { border-right: 1px solid var(--BorderStroke); border-radius: 0 12px 12px 0; }
+
+.BadgeID {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--VibrantOrange);
+    font-weight: 800;
+}
+
+/* TACTICAL SWITCHES */
+.TacticalSwitchContainer {
+    display: flex;
+    gap: 8px;
+    background: rgba(0, 0, 0, 0.2);
+    padding: 4px;
+    border-radius: 8px;
+    width: max-content;
+}
+
+.SwitchOption {
+    position: relative;
+    cursor: pointer;
+}
+
+.SwitchOption input {
+    position: absolute;
+    opacity: 0;
+}
+
+.SwitchLabel {
+    display: block;
+    padding: 8px 14px;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 900;
+    color: var(--TextDim);
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+/* ACTIVE STATES */
+.SwitchOption.Present input:checked + .SwitchLabel {
+    background: var(--EmeraldActive);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.3);
+}
+
+.SwitchOption.Absent input:checked + .SwitchLabel {
+    background: var(--AlertCrimson);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.3);
+}
+
+.SwitchOption.Leave input:checked + .SwitchLabel {
+    background: var(--VibrantOrange);
+    color: #fff;
+    box-shadow: 0 0 15px rgba(249, 115, 22, 0.3);
+}
+
+.SwitchOption:hover .SwitchLabel {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* REMARKS INPUT */
+.RemarksInput {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--BorderStroke);
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    transition: border-color 0.2s;
+}
+
+.RemarksInput:focus {
+    outline: none;
+    border-color: var(--VibrantOrange);
+}
+
+/* FOOTER ACTIONS */
+.FormFooter {
+    margin-top: 40px;
+    padding: 30px;
+    background: var(--SlateCard);
+    border-radius: 12px;
+    border: 1px solid var(--BorderStroke);
+    display: flex;
+    justify-content: flex-end;
+}
+
+.BtnPrimary {
+    background: var(--VibrantOrange);
+    color: #fff;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 8px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.BtnPrimary:hover {
+    background: #ff8533;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(249, 115, 22, 0.2);
+}
+
+/* ALERT BANNERS */
+.AlertBanner {
+    padding: 18px 24px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+}
+
+.AlertBanner.Success {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--EmeraldActive);
+    border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.AlertBanner.Error {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--AlertCrimson);
+    border: 1px solid rgba(239, 68, 68, 0.2);
+}

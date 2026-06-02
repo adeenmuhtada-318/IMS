@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personnel Attendance | Fast Security</title>
+    <link rel="stylesheet" href="css/attendance.css">
+</head>
+<body class="ThemeModernNavy">
+
+    <div class="ModuleWrapper">
+        
+        {{GLOBAL_SIDEBAR}}
+        
+        <main class="ContentStream">
+            <header class="ModuleHeader">
+                <div class="TitleBlock">
+                    <h1>Attendance Management</h1>
+                    <p>Personnel roll-call synchronized with Active Duty Shifts.</p>
+                </div>
+                <div class="ContextActions">
+                    <span class="DateStamp">{{DATE_INDICATOR}}</span>
+                </div>
+            </header>
+
+            {{ALERT_BANNER}}
+
+            <div class="ShiftSelectorBar" style="margin-bottom: 30px; background: var(--SlateCard); padding: 20px; border-radius: 12px; border: 1px solid var(--BorderStroke);">
+                <div style="font-size: 0.7rem; color: var(--TextDim); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 12px; font-weight: 800;">Filter by Operational Shift</div>
+                {{SHIFT_FILTER}}
+            </div>
+
+            <form action="process_attendance.php" method="POST" class="AttendanceForm">
+                <input type="hidden" name="shift_type" value="{{ACTIVE_SHIFT_VAL}}">
+                
+                <div class="TableScrollArea">
+                    <table class="TacticalDataTable">
+                        <thead>
+                            <tr>
+                                <th width="10%">Badge ID</th>
+                                <th width="25%">Full Name</th>
+                                <th width="15%">Duty Shift</th>
+                                <th width="20%">Status Control</th>
+                                <th width="30%">Operational Remarks</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{ATTENDANCE_ROWS}}
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="FormFooter">
+                    <button type="submit" class="BtnPrimary BtnLarge">Sync {{ACTIVE_SHIFT_VAL}} Registry</button>
+                </div>
+            </form>
+        </main>
+    </div>
+
+</body>
+</html>
